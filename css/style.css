@@ -1,0 +1,36 @@
+@font-face {
+    font-family: trend;
+    src: url(../fonts/Trend.otf);
+}
+
+@font-face {
+    font-family: acre;
+    src: url(../fonts/Acre.otf);
+}
+
+*{
+    font-family: acre;
+}
+
+.nav-link{
+    padding: 15px 32px;
+}
+
+.button-green{
+    background-color: #00c49d;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    display: inline-block;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    color: white;
+    text-decoration: none;
+}
