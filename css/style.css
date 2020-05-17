@@ -11,6 +11,7 @@
 *{
     font-family: acre;
     color: white;
+    cursor: url('../assets/cursor.svg'), auto;
 }
 
 p{
