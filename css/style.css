@@ -91,6 +91,6 @@ body {
     height: 100%;
 }
 
-.service{
-
+.hidden{
+    display: none;
 }
