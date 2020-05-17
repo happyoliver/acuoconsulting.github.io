@@ -10,7 +10,7 @@
 </head>
 <body style="background-color: #1a1a1a">
 
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark fading-navbar" style="height: 10vh">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark fading-navbar" id="navbar" style="height: 10vh">
     <a class="navbar-brand px-3" href="#" style="height: 50%">
         <img src="assets/logo-white-words.svg" class="navbar-image" style="height: 100%">
     </a>
@@ -84,7 +84,7 @@
     <br>
     <div class="row pt-5">
         <div class="col-sm-auto text-center pr-5" style="font-size: x-large">
-            <img src="assets/profile-pictures/brian.png" style="height: 15vh">
+            <img class="profile-picture" src="assets/profile-pictures/brian.png" style="height: 15vh">
             <br><br>
             <h2 class="acuo-green">Brian Ji</h2>
         </div>
@@ -99,38 +99,73 @@
             <br>
             <div class="row" >
                 <div class="col py-2" style="height: 100%">
-                    <div class="card-green-outline">
-                        <img src="assets/icons/us-flag.svg">
-                        <br><br>
-                        <h2>US <br>APPLICATIONS</h2>
+                    <div class="card-green-outline qualifications us-applications">
+                        <div class="compact">
+                            <img src="assets/icons/us-flag.svg">
+                            <br><br>
+                            <h2>US <br>APPLICATIONS</h2>
+                        </div>
+                        <div class="slim hidden">
+                            <img src="assets/icons/us-flag.svg">
+                        </div>
+                        <div class="expanded hidden">
+                            <div class="row">
+                                <div class="col text-center">
+                                    <img src="assets/icons/us-flag.svg" style="height: 50%">
+                                    <br><br><h3 style="padding-left: 10px">US APPLICATIONS</h3>
+                                </div>
+                                <div class="col">
+                                    <p>
+                                        <span class="acuo-green">QUALIFICATIONS</span>
+                                        <br>
+                                        - Admitted to UPenn CAS Neuroscience<br>
+                                        - Research experience at SFU and UC Santa Barbara
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col py-2" style="height: 100%">
-                    <div class="card-green-outline">
+                <div class="col py-2" style="height: 100%;">
+                    <div class="card-green-outline qualifications essay-drafting" style="height: 100%">
                         <img src="assets/icons/feather.svg">
                         <br><br>
-                        <h2>ESSAY DRAFTING</h2>
+                        <h2>ESSAY<br> DRAFTING</h2>
                     </div>
                 </div>
-                <div class="col py-2" style="height: 100%">
-                    <div class="card-green-outline">
+                <div class="col py-2" style="height: 100%;">
+                    <div class="card-green-outline qualifications general-prep" style="height: 100%">
                         <img src="assets/icons/user.svg">
-                        <br><br>
-                        <h2>GENERAL<br> PREP</h2>
+                                                <br><br>
+                                                <h2>GENERAL <br>PREP</h2>
                     </div>
                 </div>
+<!--                <div class="col py-2" style="height: 100%;">-->
+<!--                    <div class="card-green-outline text-center" style="height: 100%">-->
+<!--                        <img src="assets/icons/feather.svg">-->
+<!--                                                <br><br>-->
+<!--                                                <h2>ESSAY DRAFTING</h2>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col py-2" style="height: 100%">-->
+<!--                    <div class="card-green-outline">-->
+<!--                        <img src="assets/icons/user.svg">-->
+<!--                        <br><br>-->
+<!--                        <h2>GENERAL<br> PREP</h2>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
             <br>
-            <h2 class="acuo-green">
-                QUALIFICATIONS
-            </h2>
-            <p>
-                <br>
-                <img src="assets/icons/microscope.svg" style="width: 50px"> <span style="padding: 15px">Research at SFU and UC Santa Barbara</span><br><br>
-                <img src="assets/icons/book-open.svg" style="width: 50px"> <span style="padding: 15px">Admitted to UPenn CAS Neuroscience Class of 2020</span><br><br>
-                <img src="assets/icons/bar-chart.svg" style="width: 50px"> <span style="padding: 15px">1570 SAT Superscore, 800 MATH II</span><br><br>
-                <img src="assets/icons/book-open.svg" style="width: 50px"> <span style="padding: 15px">Admitted to UPenn CAS Neuroscience Class of 2020</span><br><br>
-            </p>
+<!--            <h2 class="acuo-green">-->
+<!--                QUALIFICATIONS-->
+<!--            </h2>-->
+<!--            <p>-->
+<!--                <br>-->
+<!--                <img src="assets/icons/microscope.svg" style="width: 50px"> <span style="padding: 15px">Research at SFU and UC Santa Barbara</span><br><br>-->
+<!--                <img src="assets/icons/book-open.svg" style="width: 50px"> <span style="padding: 15px">Admitted to UPenn CAS Neuroscience Class of 2020</span><br><br>-->
+<!--                <img src="assets/icons/bar-chart.svg" style="width: 50px"> <span style="padding: 15px">1570 SAT Superscore, 800 MATH II</span><br><br>-->
+<!--                <img src="assets/icons/book-open.svg" style="width: 50px"> <span style="padding: 15px">Admitted to UPenn CAS Neuroscience Class of 2020</span><br><br>-->
+<!--            </p>-->
         </div>
     </div>
 </div>
@@ -177,6 +212,7 @@
         loop: true,
         easing: 'easeInOutSine'
     });
+
 
 </script>
 </body>

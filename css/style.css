@@ -94,3 +94,8 @@ body {
 .hidden{
     display: none;
 }
+
+.profile-picture{
+    border: solid #00c49d 5px;
+    border-radius: 30px;
+}
