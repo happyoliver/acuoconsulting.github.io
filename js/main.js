@@ -276,3 +276,11 @@ $('.qualifications').hover(
             $('.qualifications').on('mouseout')
         })
     });
+
+function flipchevron(id) {
+    if(document.getElementById(id).innerText === '›'){
+        document.getElementById(id).innerText = '⌄'
+    }else{
+        document.getElementById(id).innerText = '›'
+    }
+}

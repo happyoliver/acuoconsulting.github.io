@@ -244,3 +244,28 @@ body {
 .qualification-icon{
     min-height: 80px;
 }
+
+.mobile-friendly {
+    display: none;
+}
+
+.mobile-unfriendly {
+    display: block;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .mobile-unfriendly {
+        display: none;
+    !important;
+    }
+
+    .mobile-friendly {
+        display: block;
+    !important;
+    }
+}
+
+.chevron{
+    color: #00c49d;
+}
