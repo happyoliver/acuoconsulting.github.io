@@ -54,7 +54,8 @@ function transparentChildren(node) {
         try {
             anime({
                 targets: node.childNodes[i],
-                opacity: 0
+                opacity: 0,
+                easing: 'easeInOutExpo'
             })
         } catch (e) {
 
@@ -69,7 +70,8 @@ function untransparentChildren(node) {
         try {
             anime({
                 targets: node.childNodes[i],
-                opacity: 1
+                opacity: 1,
+                easing: 'easeInOutExpo'
             })
         } catch (e) {
 
@@ -77,7 +79,10 @@ function untransparentChildren(node) {
     }
 }
 
-$('.qualifications').hover(function () {
+$('.qualifications').hover(
+    async function () {
+        $('.qualifications').off('mouseover')
+        console.log("hover")
         c1 = this.parentNode.parentNode.childNodes
         c2 = []
         c3 = []
@@ -102,68 +107,140 @@ $('.qualifications').hover(function () {
         }
 
         for (var i = 0; i < c3.length; i++) {
-            transparentChildren(c3[i])
+            // transparentChildren(c3[i])
         }
-    console.log(c3[0].offsetTop)
+
+        const result = await anime({
+            targets: c3,
+            translateX: 0,
+            width: '100%',
+            duration: 500,
+            easing: 'easeInOutExpo'
+        }).finished
+
         object = this
         left = []
         right = []
         found = false
         index = -1
-        console.log(this.classList.toString())
         for (child in c3) {
-            console.log(child)
-            console.log(c3[child].classList.toString())
             if (this.classList.toString() === c3[child].classList.toString()) {
                 found = true
                 index = child
-            }else if(!found){
+            } else if (!found) {
                 left.push(c3[child])
-            }else{
+            } else {
                 right.push(c3[child])
             }
-            console.log(found)
+        }
+
+        focuswidth = 2
+        slimwidth = ((c3.length - focuswidth)/(c3.length - 1))
+        regularWidth = this.offsetWidth
+        if (index === '0') {
+        anime({
+            targets: this,
+            width: (focuswidth * 100).toString() + '%',
+            easing: 'easeInOutExpo'
+        })
+        } else if (index === (c3.length - 1).toString()) {
+            anime({
+                targets: this,
+                translateX: -1 * regularWidth,
+                width: (focuswidth * 100).toString() + '%',
+                easing: 'easeInOutExpo'
+            })
+        } else {
+            anime({
+                targets: this,
+                translateX: (1 - focuswidth) * regularWidth + slimwidth * regularWidth * index,
+                width: (focuswidth * 100).toString() + '%',
+                easing: 'easeInOutExpo'
+            })
+        }
+
+        for (child in left) {
+            if(child === '0'){
+                anime({
+                    targets: left[child],
+                    width: (slimwidth * 100).toString() + '%',
+                    easing: 'easeInOutExpo'
+                })
+            }else{
+                await anime({
+                    targets: left[child],
+                    translateX: -(focuswidth - 1) * regularWidth + ((left.length - child) * slimwidth * regularWidth),
+                    width: (slimwidth * 100).toString() + '%',
+                    easing: 'easeInOutExpo'
+                })
+            }
+
+        }
+        for (child in right) {
+            if(child === (right.length - 1).toString()){
+                await anime({
+                    targets: right[child],
+                    translateX: (focuswidth - 1) * regularWidth - (slimwidth * regularWidth),
+                    width: (slimwidth * 100).toString() + '%',
+                    easing: 'easeInOutExpo'
+                })
+            }else{
+                anime({
+                    targets: right[child],
+                    translateX: (focuswidth - 1) * regularWidth - ((child) * slimwidth * regularWidth),
+                    width: (slimwidth * 100).toString() + '%',
+                    easing: 'easeInOutExpo'
+                })
+            }
+        }
+        c4 = Array.from(this.childNodes[1].childNodes);
+        console.log(c4)
+        c4 = c4.filter(function (item) {
+            return item.nodeName === "DIV"
+        })
+        await anime({
+            targets: this,
+            height: '150%'
+        }).finished.then(function () {
+            $('.qualifications').on('mouseover')
+        })
+        for(child in c4){
+            if(c4[child].classList.contains("hidden")){
+                c4[child].classList.remove("hidden")
+                anime.set(c4[child],{
+                    opacity: 0
+                })
+                anime({
+                    targets: c4[child],
+                    opacity: 1
+                })
+            }
         }
 
 
+    },
+    async function () {
+        $('.qualifications').off('mouseout');
+        console.log("unhover")
 
-        anime({
-            targets: this,
-            translateX: -100 * index,
-            width: '150%'
+        c4 = Array.from(this.childNodes[1].childNodes);
+        console.log(c4)
+        c4 = c4.filter(function (item) {
+            return item.nodeName === "DIV"
         })
 
 
-        for (child in left) {
-            if(child !== '0'){
-                anime({
-                    targets: left[child],
-                    translateX: -100 * (left.length - child),
-                    width: '50%'
-                })
-            }else{
-                anime({
-                    targets: left[child],
-                    width: '50%'
-                })
+        for(child in c4){
+            if(c4[child].classList.contains("hide")){
+                await anime({
+                    targets: c4[child],
+                    opacity: 0
+                }).finished
+                await c4[child].classList.add("hidden")
             }
         }
-        for (child in right) {
-            if(child !== right.length.toString()){
-                anime({
-                    targets: right[child],
-                    translateX: 100 * (right.length - child),
-                    width: '50%'
-                })
-            }else{
-                anime({
-                    targets: right[child],
-                    width: '50%'
-                })
-            }
-        }
-    },
-    function () {
+
+
         c1 = this.parentNode.parentNode.childNodes
         c2 = []
         c3 = []
@@ -191,9 +268,11 @@ $('.qualifications').hover(function () {
             untransparentChildren(c3[i])
         }
 
-        anime({
+        await anime({
             targets: c3,
             translateX: 0,
             width: '100%'
+        }).finished.then(function () {
+            $('.qualifications').on('mouseout')
         })
     });
