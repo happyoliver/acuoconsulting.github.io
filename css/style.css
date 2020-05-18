@@ -95,10 +95,13 @@ body {
 .hidden{
     display: none;
 }
+hr{
+    border-top: 1px solid #00c49d;
+}
 
 .profile-picture{
     border: solid #00c49d 5px;
-    border-radius: 30px;
+    border-radius: 25px;
 }
 
 .accordion {
