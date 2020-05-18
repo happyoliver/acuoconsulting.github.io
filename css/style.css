@@ -182,12 +182,43 @@ body {
 .accordion ul:hover li {
     width: 8% !important;
 }
-.accordion ul:hover li a * {
+.accordion ul:hover h2 {
     opacity: 0 !important;
 }
+
+.accordion ul:hover h3 {
+    opacity: 0 !important;
+}
+
+.accordion ul:hover p {
+    opacity: 0 !important;
+}
+
+.accordion ul h3 {
+    opacity: 0 !important;
+}
+
+.accordion ul p {
+    opacity: 0 !important;
+}
+
+
+.accordion ul:hover .col div {
+    display: none;
+}
+
+.accordion ul:hover li:hover .col div {
+    display: block;
+}
+
 .accordion ul:hover li:hover {
     width: 60% !important;
 }
+
+.accordion ul:hover li:hover h3{
+    width: 60% !important;
+}
+
 .accordion ul:hover li:hover a * {
     opacity: 1 !important;
     -webkit-transform: translateX(0);
