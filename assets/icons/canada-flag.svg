@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="6.4721699mm"
+   height="6.4723201mm"
+   viewBox="0 0 6.4721698 6.4723201"
+   version="1.1"
+   id="svg4579"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="canada-flag.svg">
+  <defs
+     id="defs4573" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="11.2"
+     inkscape:cx="11.214176"
+     inkscape:cy="17.530443"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1052"
+     inkscape:window-x="1920"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4576">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(10.795609,-103.26384)">
+    <path
+       inkscape:connector-curvature="0"
+       style="opacity:1;fill:#00c69f;fill-opacity:1;stroke:none;stroke-width:0.05557393;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m -7.559597,103.26384 a 3.2361446,3.2361446 0 0 0 -3.236012,3.23616 3.2361446,3.2361446 0 0 0 3.236012,3.23616 3.2361446,3.2361446 0 0 0 3.2361579,-3.23616 3.2361446,3.2361446 0 0 0 -3.2361579,-3.23616 z m 0,1.12348 0.3482132,0.68364 a 0.06815295,0.06815295 0 0 0 0.095346,0.0283 l 0.3429,-0.19816 -0.2139532,1.10308 a 0.06815295,0.06815295 0 0 0 0.1164537,0.0597 l 0.4435588,-0.47601 0.1099928,0.2589 a 0.06815295,0.06815295 0 0 0 0.076535,0.0399 l 0.5683415,-0.12061 -0.1949992,0.59978 a 0.06815295,0.06815295 0 0 0 0.035611,0.0829 l 0.2222824,0.10367 -0.9866283,0.7991 a 0.06815295,0.06815295 0 0 0 -0.020965,0.0765 l 0.1216236,0.33544 -0.9007594,-0.15824 a 0.09960816,0.09960816 0 0 0 -0.1163104,0.10267 l 0.047098,0.90492 h -0.1885376 l 0.047098,-0.90492 a 0.09960816,0.09960816 0 0 0 -0.1163101,-0.10267 l -0.900758,0.15824 0.1216221,-0.33544 a 0.06815295,0.06815295 0 0 0 -0.020965,-0.0765 l -0.9866263,-0.7991 0.2222793,-0.10367 a 0.06815295,0.06815295 0 0 0 0.035613,-0.0829 l -0.1949961,-0.59978 0.5683364,0.12061 a 0.06815295,0.06815295 0 0 0 0.076534,-0.0399 l 0.1099927,-0.2589 0.4435625,0.47601 a 0.06815295,0.06815295 0 0 0 0.1164538,-0.0597 l -0.2139533,-1.10308 0.3429001,0.19816 a 0.06815295,0.06815295 0 0 0 0.095345,-0.0283 z"
+       id="path4561" />
+  </g>
+</svg>
