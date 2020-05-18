@@ -272,3 +272,11 @@ hr{
 .chevron{
     color: #00c49d;
 }
+
+.navbar{
+    transition: transform 300ms;
+}
+
+.hide {
+    transform: translateY(-10vh);
+}
