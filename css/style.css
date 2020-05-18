@@ -149,9 +149,9 @@ body {
     overflow: hidden;
 }
 .accordion ul li div a * {
-    opacity: 0;
+    /*opacity: 0;*/
     margin: 0;
-    width: 100%;
+    /*width: 100%;*/
     text-overflow: ellipsis;
     position: relative;
     z-index: 5;
@@ -161,19 +161,9 @@ body {
     transform: translateX(-20px);
     -webkit-transition: all 400ms ease;
     transition: all 400ms ease;
+    padding: 20px
 }
-.accordion ul li div a h2 {
-    font-family: Montserrat, sans-serif;
-    text-overflow: clip;
-    font-size: 24px;
-    text-transform: uppercase;
-    margin-bottom: 2px;
-    top: 160px;
-}
-.accordion ul li div a p {
-    top: 160px;
-    font-size: 13.5px;
-}
+
 
 .accordion ul:hover li, .accordion ul:focus-within li {
     width: 8%;
@@ -218,4 +208,8 @@ body {
         -webkit-transition: none;
         transition: none;
     }
+}
+
+.qualification-icon{
+    min-height: 80px;
 }
