@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Acuo</title>
+    <link rel="icon" href="../assets/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/timeline.css">
+    <link rel="stylesheet" type="text/css" href="../css/materialize.css">
+</head>
+<body style="background-color: #1a1a1a">
+
+<div class="container text-center p-5">
+    <a href="index.html"><img src="../assets/logo.svg" style="width: 5vw"></a>
+</div>
+
+<div class="container px-lg-5 py-5" style="width: 40%">
+
+
+    <h4>To start, !</h4>
+    <br><br>
+    <p class="" style="float: left;padding-bottom: 0.6rem; padding-top: 0.6rem ">My name is </p>
+    <input class="px-3 d-inline-block" type="text" value="" placeholder="John Smith (First, Last)" name="fname"
+           style="width: auto">
+    <br><br>
+    <p class="" style="float: left;padding-bottom: 0.6rem; padding-top: 0.6rem ">My email is </p>
+    <input class="px-3 d-inline-block" type="text" value="" placeholder="johnsmith@gmail.com" name="fname"
+           style="width: auto">
+    <br><br>
+    <p class="" style="float: left;padding-bottom: 0.6rem; padding-top: 0.6rem ">My phone number is </p>
+    <input class="px-3 d-inline-block" type="text" value="" placeholder="(604)-001-0002" name="fname"
+           style="width: auto">
+    <br><br>
+    <p class="py-4" style="float: left; ">I am a</p>
+    <div class="input-field s12 d-inline-block px-3">
+        <select>
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1">Parent</option>
+            <option value="2">Student</option>
+        </select>
+    </div>
+    <br><br>
+    <p class="" style="float: left;padding-bottom: 0.6rem; padding-top: 0.6rem ">I attend high school at </p>
+    <input class="px-3 d-inline-block" type="text" value="" placeholder="Smith Secondary School" name="fname"
+           style="width: auto">
+    <br><br>
+    <p class="py-4" style="float: left; ">This September, I will be in grade</p>
+    <div class="input-field s12 d-inline-block px-3">
+        <select>
+            <option value="" disabled selected>Choose your option</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+        </select>
+    </div>
+    <br><br>
+    <p class="py-4" style="float: left; ">I am interested in</p>
+    <div class="input-field s12 d-inline-block px-3">
+        <select>
+            <option value="" disabled selected>Choose your service</option>
+            <option value="1">General Instruction</option>
+            <option value="2">Standardized Testing Preparation (AP/SAT)</option>
+            <option value="3">College Admissions Consultation</option>
+            <option value="4">Personal Profile Development</option>
+        </select>
+    </div>
+    <br><br>
+    <p class="">You can give a link to your Resume or CV.</p>
+    <input class="px-3 d-inline-block" type="text" value="" placeholder="https://drive.google.com/file/d/1234asdf" name="fname"
+           style="width: 80%">
+    <br><br>
+    <div class="py-5">
+        <a href="#" onclick="" class="button-green">SUBMIT</a>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"
+        integrity="sha256-hBMojZuWKocCflyaG8T19KBq9OlTlK39CTxb8AUWKhY=" crossorigin="anonymous"></script>
+<script src="../js/materialize.min.js"></script>
+<script src="../js/main.js"></script>
+<script>
+    $(document).ready(function () {
+        $('select').formSelect();
+    });
+</script>
+</body>
+</html>

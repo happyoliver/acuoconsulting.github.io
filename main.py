@@ -1,5 +1,14 @@
 from flask import Flask, request, render_template, send_from_directory, session, flash, redirect, Response
 
+
+config = {
+  "apiKey": "AIzaSyAm-nUbB5Jnp6THTG3WXeEwKdIqktZNzDE",
+  "authDomain": "acuodatabase.firebaseapp.com",
+  "databaseURL": "https://acuodatabase.firebaseio.com",
+  "storageBucket": "acuodatabase.appspot.com"
+}
+
+
 app = Flask(__name__)
 
 app.secret_key = 'Zli6WMDUEboJnp34fzwK'.encode('utf8')
@@ -41,5 +50,10 @@ def send_js(path):
 def index():
     return render_template("index.html")
 
+@app.route('/register')
+def register():
+    return render_template("register.html")
+
 if __name__ == '__main__':
+
     app.run(debug=True)
