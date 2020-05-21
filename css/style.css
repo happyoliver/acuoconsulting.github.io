@@ -12,8 +12,10 @@ html {
     scroll-behavior: smooth;
 }
 
+
+
 *{
-    font-family: acre;
+    font-family: acre; !important;
     color: white;
 }
 
@@ -103,6 +105,7 @@ body {
 .hidden{
     display: none;
 }
+
 hr{
     border-top: 1px solid #00c49d;
 }
