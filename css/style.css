@@ -87,6 +87,10 @@ body {
     color: #00c49d;
 }
 
+.warning-red{
+    color: coral; !important;
+}
+
 .card-green {
     background-color: #00c49d;
     border: none;

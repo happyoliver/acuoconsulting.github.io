@@ -10,77 +10,104 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/timeline.css">
     <link rel="stylesheet" type="text/css" href="../css/materialize.css">
+    <style>
+        p {
+            transition: color 0.3s ease-in-out;
+        }
+
+        * {
+
+            text-overflow: ellipsis;
+        }
+
+        span{
+            color: #00c49d;
+        }
+
+        #main-container {
+            width: 40%;
+        }
+
+        @media screen and (max-width: 800px) /* height >= 820 px */ {
+            #main-container {
+                width: 90%;
+            }
+        }
+    </style>
 </head>
 <body style="background-color: #1a1a1a">
 
 <div class="container text-center p-5">
-    <a href="index.html"><img src="../assets/logo.svg" style="width: 5vw"></a>
+    <a href="/"><img src="../assets/logo.svg" style="width: 5vw"></a>
 </div>
 
-<div class="container px-lg-5 py-5" style="width: 40%">
+<div class="container py-5" id="main-container">
+    <form id="registration_form">
+        <h5>To get started with <span class="acuo-green">Acuo</span>, fill out some information about you or your child,
+            and we'll get back to you in <span class="acuo-green text-nowrap">1-3</span> business days.</h5>
+        <br><br>
+        <p class="">Student's Full Name </p>
+        <input class="" type="text" value="" placeholder="John Smith (First, Last)" name="fullname"
+               style="width: auto" id="fullname">
+        <br><br>
+        <p class="">Email</p>
+        <input class="" type="text" value="" placeholder="johnsmith@gmail.com" name="email"
+               style="width: auto" id="email">
+        <br><br>
+        <p class="">Phone Number</p>
+        <input class="" type="text" value="" placeholder="(604)-001-0002" name="phone"
+               style="width: auto" id="phone">
+        <br><br>
+        <p class="py-4" style="float: left; ">I am a</p>
+        <div class="input-field px-3 s12 d-inline-block" id="type">
+            <select name="type" form="registration_form">
+                <option value="" selected>Choose your option</option>
+                <option value="1">Parent</option>
+                <option value="2">Student</option>
+            </select>
+        </div>
+        <br><br>
+        <p class="">What will your grade be for the September of this year?</p>
+        <div class="input-field s12" id="grade">
+            <select name="grade" form="registration_form">
+                <option value="" selected>Choose your grade</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+        </div>
 
-
-    <h4>To start, !</h4>
-    <br><br>
-    <p class="" style="float: left;padding-bottom: 0.6rem; padding-top: 0.6rem ">My name is </p>
-    <input class="px-3 d-inline-block" type="text" value="" placeholder="John Smith (First, Last)" name="fname"
-           style="width: auto">
-    <br><br>
-    <p class="" style="float: left;padding-bottom: 0.6rem; padding-top: 0.6rem ">My email is </p>
-    <input class="px-3 d-inline-block" type="text" value="" placeholder="johnsmith@gmail.com" name="fname"
-           style="width: auto">
-    <br><br>
-    <p class="" style="float: left;padding-bottom: 0.6rem; padding-top: 0.6rem ">My phone number is </p>
-    <input class="px-3 d-inline-block" type="text" value="" placeholder="(604)-001-0002" name="fname"
-           style="width: auto">
-    <br><br>
-    <p class="py-4" style="float: left; ">I am a</p>
-    <div class="input-field s12 d-inline-block px-3">
-        <select>
-            <option value="" disabled selected>Choose your option</option>
-            <option value="1">Parent</option>
-            <option value="2">Student</option>
-        </select>
-    </div>
-    <br><br>
-    <p class="" style="float: left;padding-bottom: 0.6rem; padding-top: 0.6rem ">I attend high school at </p>
-    <input class="px-3 d-inline-block" type="text" value="" placeholder="Smith Secondary School" name="fname"
-           style="width: auto">
-    <br><br>
-    <p class="py-4" style="float: left; ">This September, I will be in grade</p>
-    <div class="input-field s12 d-inline-block px-3">
-        <select>
-            <option value="" disabled selected>Choose your option</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-        </select>
-    </div>
-    <br><br>
-    <p class="py-4" style="float: left; ">I am interested in</p>
-    <div class="input-field s12 d-inline-block px-3">
-        <select>
-            <option value="" disabled selected>Choose your service</option>
-            <option value="1">General Instruction</option>
-            <option value="2">Standardized Testing Preparation (AP/SAT)</option>
-            <option value="3">College Admissions Consultation</option>
-            <option value="4">Personal Profile Development</option>
-        </select>
-    </div>
-    <br><br>
-    <p class="">You can give a link to your Resume or CV.</p>
-    <input class="px-3 d-inline-block" type="text" value="" placeholder="https://drive.google.com/file/d/1234asdf" name="fname"
-           style="width: 80%">
-    <br><br>
-    <div class="py-5">
-        <a href="#" onclick="" class="button-green">SUBMIT</a>
-    </div>
+        <p class="py-4" style="float: left; ">I am interested in</p>
+        <div class="input-field s12 d-inline-block px-3" id="service">
+            <select multiple name="service" form="registration_form">
+                <option value="1" selected>General Instruction</option>
+                <option value="2">Standardized Testing Preparation (AP/SAT)</option>
+                <option value="3">College Admissions Consultation</option>
+                <option value="4">Personal Profile Development</option>
+                <option value="5">All of the above</option>
+            </select>
+        </div>
+        <br><br>
+        <p class="">You can give a link to your Resume or CV.</p>
+        <input class="px-3 d-inline-block" type="text" placeholder="https://drive.google.com/file/d/1234asdf"
+               name="resume" id="resume">
+        <br><br>
+        <p>
+            Any other questions?
+        </p>
+        <textarea id="questions" name="questions" class="materialize-textarea"
+                  placeholder="Additional questions..."></textarea>
+        <br><br>
+        <div class="py-5">
+            <a onclick="submit()" style="cursor: pointer" class="button-green">SUBMIT</a>
+        </div>
+    </form>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -90,12 +117,36 @@
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"
         integrity="sha256-hBMojZuWKocCflyaG8T19KBq9OlTlK39CTxb8AUWKhY=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="../js/materialize.min.js"></script>
 <script src="../js/main.js"></script>
 <script>
     $(document).ready(function () {
         $('select').formSelect();
     });
+
+
+    $('textarea, input, .input-field').hover(function () {
+        if (!$(this).prev()[0].classList.contains("warning-red")) {
+            $(this).prev()[0].classList.add("acuo-green")
+        }
+    }, function () {
+        if (!$(this).prev()[0].classList.contains("warning-red")) {
+            $(this).prev()[0].classList.remove("acuo-green")
+        }
+    })
+
+    function validURL(str) {
+        var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+            '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+            '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+            '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+            '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+            '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
+        return !!pattern.test(str);
+    }
+
+
 </script>
 </body>
 </html>
