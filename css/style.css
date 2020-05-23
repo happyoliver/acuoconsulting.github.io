@@ -83,6 +83,10 @@ body {
     background-color: #00c49d;
 }
 
+.section{
+    min-height: 100vh;
+}
+
 .acuo-green{
     color: #00c49d;
 }

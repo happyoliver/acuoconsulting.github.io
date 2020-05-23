@@ -11,13 +11,16 @@ def is_gce_instance():
     return False
   return True
 
-if is_gce_instance():
-    cred = credentials.ApplicationDefault()
-    firebase_admin.initialize_app(cred, {
-        'projectId': 'acuodatabase',
-    })
-else:
-    cred = credentials.Certificate('acuodatabase-055d733310e5.json')
-    firebase_admin.initialize_app(cred)
+# if is_gce_instance():
+#     cred = credentials.ApplicationDefault()
+#     firebase_admin.initialize_app(cred, {
+#         'projectId': 'acuodatabase',
+#     })
+# else:
+#     cred = credentials.Certificate('acuodatabase-055d733310e5.json')
+#     firebase_admin.initialize_app(cred)
+
+cred = credentials.Certificate('acuodatabase-055d733310e5.json')
+firebase_admin.initialize_app(cred)
 
 db = firestore.client()

@@ -16,11 +16,10 @@
         }
 
         * {
-
             text-overflow: ellipsis;
         }
 
-        span{
+        span {
             color: #00c49d;
         }
 
@@ -39,9 +38,11 @@
 
 <div class="container text-center p-5">
     <a href="/"><img src="../assets/logo.svg" style="width: 5vw"></a>
+    <br><br><br>
+    <a href="/"><img src="../assets/icons/arrow-left.svg" style="height: 1vw" id="left-arrow"></a>
 </div>
 
-<div class="container py-5" id="main-container">
+<div class="container py-2" id="main-container">
     <form id="registration_form">
         <h5>To get started with <span class="acuo-green">Acuo</span>, fill out some information about you or your child,
             and we'll get back to you in <span class="acuo-green text-nowrap">1-3</span> business days.</h5>
@@ -86,7 +87,7 @@
                 <option value="2">Standardized Testing Preparation (AP/SAT)</option>
                 <option value="3">College Admissions Consultation</option>
                 <option value="4">Personal Profile Development</option>
-                <option value="5">All of the above</option>
+                <option value="5">Other</option>
             </select>
         </div>
         <br><br>
@@ -101,7 +102,7 @@
                   placeholder="Additional questions..."></textarea>
         <br><br>
         <div class="py-5">
-            <a onclick="submit()" style="cursor: pointer" class="button-green">SUBMIT</a>
+            <button  data-sitekey="6LcHI_sUAAAAAIlWML-WH1wHMP2XOmjsi1o8ReAV" data-callback="submit" data-action="submit" style="cursor: pointer" class="button-green g-recaptcha">SUBMIT</button>
         </div>
     </form>
 </div>
@@ -118,6 +119,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"
         integrity="sha256-hBMojZuWKocCflyaG8T19KBq9OlTlK39CTxb8AUWKhY=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+ <script src="https://www.google.com/recaptcha/api.js"></script>
 <script src="../js/materialize.min.js"></script>
 <script src="../js/main.js"></script>
 <script>
@@ -146,6 +148,178 @@
         return !!pattern.test(str);
     }
 
+    function getFormData(dom_query) {
+        var out = {};
+        var s_data = $(dom_query).serializeArray();
+        //transform into simple data/value object
+        for (var i = 0; i < s_data.length; i++) {
+            var record = s_data[i];
+            out[record.name] = record.value;
+        }
+        return out;
+    }
+
+    function validate_responses() {
+        values = getFormData($('#registration_form'))
+        console.log(values)
+        invalid = []
+        for (key in values) {
+            console.log(values[key])
+            if (!values[key] && key !== 'questions' && key !== 'resume') {
+                $('#' + key).prev()[0].classList.add("warning-red");
+                invalid.push(key)
+            } else {
+                $('#' + key).prev()[0].classList.remove("warning-red");
+            }
+        }
+        if (!invalid.includes("email")) {
+            $.ajax({
+                type: "GET",
+                url: "/valemail?email=" + values["email"],
+                success: function (data) {
+                    $('#email').prev()[0].classList.add("warning-red");
+                    if (!data["format_valid"]) {
+                        Swal.fire({
+                            position: 'top',
+                            icon: 'error',
+                            title: 'Invalid email format.',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            backdrop: false,
+                            toast: true,
+                            customClass: {
+                                border: '5px solid black'
+                            }
+                        })
+                    } else if (!data["smtp_check"] || !data["mx_found"]) {
+                        Swal.fire({
+                            position: 'top',
+                            icon: 'error',
+                            title: 'Email does not exist.',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            backdrop: false,
+                            toast: true,
+                            customClass: {
+                                border: '5px solid black'
+                            }
+                        })
+                    } else {
+                        $('#email').prev()[0].classList.remove("warning-red");
+                    }
+
+                },
+                contentType: "application/json; charset=utf-8"
+            });
+        }
+        if (!invalid.includes("phone")) {
+            $.ajax({
+                type: "GET",
+                url: "/valphone?phone=" + values["phone"],
+                success: function (data) {
+                    $('#phone').prev()[0].classList.add("warning-red");
+                    if (!data["valid"]) {
+                        Swal.fire({
+                            position: 'top',
+                            icon: 'error',
+                            title: 'Invalid phone number.',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            backdrop: false,
+                            toast: true,
+                            customClass: {
+                                border: '5px solid black'
+                            }
+                        })
+                    } else {
+                        $('#phone').prev()[0].classList.remove("warning-red");
+                    }
+
+                },
+                contentType: "application/json; charset=utf-8"
+            });
+        }
+        if (values['resume']) {
+            $('#resume').prev()[0].classList.add("warning-red");
+            if (!validURL(values["resume"])) {
+                Swal.fire({
+                    position: 'top',
+                    icon: 'error',
+                    title: 'Invalid URL for your resume.',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    backdrop: false,
+                    toast: true,
+                    customClass: {
+                        border: '5px solid black'
+                    }
+                })
+            } else {
+                $('#resume').prev()[0].classList.remove("warning-red");
+            }
+        }
+
+        return invalid.length === 0
+    }
+
+    function submit(token) {
+        Swal.fire({
+            title: 'Saving your information...',
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            allowEnterKey: false,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+            },
+            onClose: () => {
+                clearInterval(timerInterval)
+            }
+        }).then((result) => {
+
+        })
+        if (validate_responses()) {
+            console.log(JSON.stringify($('#registration_form').serializeArray()))
+            $.ajax({
+                type: "POST",
+                url: "/add",
+                data: JSON.stringify($('#registration_form').serializeArray()),
+                success: function () {
+                    Swal.fire({
+                        icon: 'success',
+                        title: "Your response has been submitted successfully.",
+                        html: '<span style="color: black">We\'ll get back to you in 1-3 business days.</span>',
+                        footer: '<a href="/" style="color: dodgerblue">Go back to the home page</a>'
+                    })
+                },
+                error: function (xhr) {
+                    if (xhr.status === 422) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: "One of your responses is invalid.",
+                            html: '<span style="color: black">Double check your responses.</span>',
+                            footer: '<a href="/" style="color: dodgerblue">Go back to the home page</a>'
+                        })
+                    }else if (xhr.status === 403) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: "You are a robot.",
+                            html: '<span style="color: black">Beep boop bop.</span>',
+                            footer: '<a href="/" style="color: dodgerblue">Go back to the home page</a>'
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: "Something went wrong when submitting your response.",
+                            html: '<span style="color: black">Try again in a few minutes, or email <a style="color: #00c49d" href="mailto:support@acuo.ca">support@acuo.ca</a>.</span>',
+                            footer: '<a href="/" style="color: dodgerblue">Go back to the home page</a>'
+                        })
+                    }
+
+                },
+                contentType: "application/json; charset=utf-8"
+            });
+        }
+    }
 
 </script>
 </body>
