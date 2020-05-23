@@ -112,15 +112,26 @@
     <br><br>
 
     <div class="text-center" style="width: 100%">
-        <a onclick="swapService()">
-            <button type="button" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false"
-                autocomplete="off" id="serviceToggle" >
-            <div class="handle" style="background-color: #00c49d"></div>
-        </button>
-        </a>
+        <div class="row justify-content-center">
+            <div class="col-sm-auto">
+                <h3 class="acuo-green" id="consulting-header">CONSULTING</h3>
+            </div>
+            <div class="col-sm-auto">
+                <a onclick="swapService()">
+                    <button type="button" class="btn btn-lg btn-toggle" data-toggle="button" aria-pressed="false"
+                            autocomplete="off" id="serviceToggle">
+                        <div class="handle" style="background-color: #00c49d"></div>
+                    </button>
+                </a>
+            </div>
+            <div class="col-sm-auto" >
+                <h3 id="tutoring-header">TUTORING</h3>
+            </div>
+        </div>
+
     </div>
     <br><br>
-    <div class="row consulting hidden" id="consulting">
+    <div class="row consulting" id="consulting">
         <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
             <ul class="timeline">
                 <li class="timeline-item">
@@ -326,7 +337,7 @@
             </ul>
         </div>
     </div>
-    <div class="tutoring" id="tutoring">
+    <div class="tutoring  hidden" id="tutoring">
         <div class="row">
             <div class="card-green-outline w-100" style="transition: all 0.3s ease-in-out;">
                 <img src="../assets/icons/bar-chart.svg">
@@ -1144,8 +1155,8 @@
     </p>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -1203,37 +1214,17 @@
 
     async function swapService() {
         if (document.getElementById('serviceToggle').classList.contains("active")) {
+            document.getElementById("consulting-header").classList.add("acuo-green")
+            document.getElementById("tutoring-header").classList.remove("acuo-green")
             await anime({
-                targets: '.consulting',
+                targets: '.tutoring',
                 translateX: '-25vw',
-                opacity: 0,
-                scale: 0.5,
-                easing: 'easeInOutExpo'
-            }).finished
-            anime.set('.tutoring', {
-                translateX: '25vw',
-                opacity: 0,
-                scale: 0.5
-            })
-            document.getElementById('consulting').classList.add("hidden")
-            document.getElementById('tutoring').classList.remove("hidden")
-            await anime({
-                targets: '.tutoring',
-                translateX: 0,
-                opacity: 1,
-                scale: 1,
-                easing: 'easeInOutExpo'
-            }).finished
-        } else {
-            await anime({
-                targets: '.tutoring',
-                translateX: '25vw',
                 opacity: 0,
                 scale: 0.5,
                 easing: 'easeInOutExpo'
             }).finished
             anime.set('.consulting', {
-                translateX: '-25vw',
+                translateX: '25vw',
                 opacity: 0,
                 scale: 0.5
             })
@@ -1246,6 +1237,32 @@
                 scale: 1,
                 easing: 'easeInOutExpo'
             }).finished
+
+        } else {
+            document.getElementById("consulting-header").classList.remove("acuo-green")
+            document.getElementById("tutoring-header").classList.add("acuo-green")
+            await anime({
+                targets: '.consulting',
+                translateX: '25vw',
+                opacity: 0,
+                scale: 0.5,
+                easing: 'easeInOutExpo'
+            }).finished
+            anime.set('.tutoring', {
+                translateX: '-25vw',
+                opacity: 0,
+                scale: 0.5
+            })
+            document.getElementById('consulting').classList.add("hidden")
+            document.getElementById('tutoring').classList.remove("hidden")
+            await anime({
+                targets: '.tutoring',
+                translateX: 0,
+                opacity: 1,
+                scale: 1,
+                easing: 'easeInOutExpo'
+            }).finished
+
         }
 
 
