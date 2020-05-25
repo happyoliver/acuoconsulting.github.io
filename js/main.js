@@ -36,6 +36,20 @@ function flipchevron(id) {
     }
 }
 
+function flipchevronClass(cssClass) {
+    chevronList = document.getElementsByClassName(cssClass)
+
+    if (chevronList[0].innerText === '›') {
+        for(chevron in chevronList){
+            chevronList[chevron].innerText = '⌄'
+        }
+    } else {
+        for(chevron in chevronList){
+            chevronList[chevron].innerText = '›'
+        }
+    }
+}
+
 var lastScrollTop = 0;
 $(window).scroll(function () {
     var st = $(this).scrollTop();
@@ -49,4 +63,3 @@ $(window).scroll(function () {
         lastScrollTop = st;
     }, 100);
 });
-
