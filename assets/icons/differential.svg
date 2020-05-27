@@ -26,14 +26,14 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="5.6"
-     inkscape:cx="2.0054663"
+     inkscape:cx="-30.315962"
      inkscape:cy="22.166659"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1052"
-     inkscape:window-x="1920"
+     inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1" />
   <metadata
@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -53,16 +53,18 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-69.7696,-173.36384)">
-    <text
-       xml:space="preserve"
+    <g
+       aria-label="dx"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.63847208px;line-height:0;font-family:Acre;-inkscape-font-specification:Acre;letter-spacing:0px;word-spacing:0px;fill:#00c49d;fill-opacity:0.92941176;stroke:none;stroke-width:0.26458332"
-       x="69.527145"
-       y="177.87462"
-       id="text8695"><tspan
-         sodipodi:role="line"
-         id="tspan8693"
-         x="69.527145"
-         y="177.87462"
-         style="fill:#00c49d;fill-opacity:0.92941176;stroke-width:0.26458332">dx</tspan></text>
+       id="text8695">
+      <path
+         d="m 72.053181,173.36384 v 2.14262 c -0.219901,-0.2932 -0.546932,-0.49055 -0.964179,-0.49055 -0.783747,0 -1.319402,0.63715 -1.319402,1.44909 0,0.81194 0.535655,1.44909 1.319402,1.44909 0.417247,0 0.744278,-0.19735 0.964179,-0.49055 v 0.45108 h 0.530016 v -4.51078 z m -0.873963,4.03715 c -0.507463,0 -0.862687,-0.41725 -0.862687,-0.93599 0,-0.5131 0.355224,-0.93035 0.862687,-0.93035 0.507462,0 0.873963,0.43416 0.873963,0.93035 0,0.49619 -0.366501,0.93599 -0.873963,0.93599 z"
+         style="fill:#00c49d;fill-opacity:0.92941176;stroke-width:0.26458332"
+         id="path814" />
+      <path
+         d="m 75.864784,177.87462 -1.099502,-1.40962 1.082586,-1.40962 h -0.631509 l -0.761193,1.03184 -0.766833,-1.03184 h -0.631508 l 1.088225,1.40962 -1.099502,1.40962 h 0.654062 l 0.755556,-1.0262 0.749916,1.0262 z"
+         style="fill:#00c49d;fill-opacity:0.92941176;stroke-width:0.26458332"
+         id="path816" />
+    </g>
   </g>
 </svg>
