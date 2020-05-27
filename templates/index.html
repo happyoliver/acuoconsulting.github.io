@@ -138,9 +138,9 @@
                         <div class="timeline-content">
                             <h3 class="timeline-title">Grade 10</h3>
                             <br>
-                            <img class="px-3 py-1" src="../assets/icons/book-open.svg"> HIGH SCHOOL COURSEWORK<br><br>
-                            <img class="px-3 py-1" src="../assets/icons/zap.svg"> SUMMER OPPORTUNITIES<br><br>
-                            <img class="px-3 py-1" src="../assets/icons/user.svg"> PROFILE DEVELOPMENT<br><br>
+                            <span onmouseover="glow('hs-work')" onmouseout="unglow('hs-work')"><img class="px-3 py-1 timeline-point" src="../assets/icons/book-open.svg"> HIGH SCHOOL COURSEWORK<br><br></span></span>
+                            <span onmouseover="glow('summer-opp')" onmouseout="unglow('summer-opp')"><img class="px-3 py-1 timeline-point" src="../assets/icons/zap.svg"> SUMMER OPPORTUNITIES<br><br></span>
+                            <span onmouseover="glow('profile-dev')" onmouseout="unglow('profile-dev')" ><img class="px-3 py-1 timeline-point" src="../assets/icons/user.svg"> PROFILE DEVELOPMENT<br><br></span>
                         </div>
                     </li>
                     <li class="timeline-item">
@@ -148,10 +148,10 @@
                         <div class="timeline-content">
                             <h3 class="timeline-title">Grade 11</h3>
                             <br>
-                            <img class="px-3 py-1" src="../assets/icons/book-open.svg"> HIGH SCHOOL COURSEWORK<br><br>
-                            <img class="px-3 py-1" src="../assets/icons/zap.svg"> SUMMER OPPORTUNITIES<br><br>
-                            <img class="px-3 py-1" src="../assets/icons/user.svg"> PROFILE DEVELOPMENT<br><br>
-                            <img class="px-3 py-1" src="../assets/icons/user-check.svg"> COLLEGE ADMISSIONS<br><br>
+                            <span onmouseover="glow('hs-work')" onmouseout="unglow('hs-work')"><img class="px-3 py-1 timeline-point" src="../assets/icons/book-open.svg"> HIGH SCHOOL COURSEWORK<br><br></span></span>
+                            <span onmouseover="glow('summer-opp')" onmouseout="unglow('summer-opp')"><img class="px-3 py-1 timeline-point" src="../assets/icons/zap.svg"> SUMMER OPPORTUNITIES<br><br></span>
+                            <span onmouseover="glow('profile-dev')" onmouseout="unglow('profile-dev')" ><img class="px-3 py-1 timeline-point" src="../assets/icons/user.svg"> PROFILE DEVELOPMENT<br><br></span>
+                            <span onmouseover="glow('admissions')" onmouseout="unglow('admissions')"><img class="px-3 py-1 timeline-point" src="../assets/icons/user-check.svg"> COLLEGE ADMISSIONS<br><br></span>
                         </div>
                     </li>
                     <li class="timeline-item">
@@ -159,11 +159,11 @@
                         <div class="timeline-content">
                             <h3 class="timeline-title">Grade 12</h3>
                             <br>
-                            <img class="px-3 py-1" src="../assets/icons/book-open.svg"> HIGH SCHOOL COURSEWORK<br><br>
-                            <img class="px-3 py-1" src="../assets/icons/zap.svg"> SUMMER OPPORTUNITIES<br><br>
-                            <img class="px-3 py-1" src="../assets/icons/user.svg"> PROFILE DEVELOPMENT<br><br>
-                            <img class="px-3 py-1" src="../assets/icons/user-check.svg"> COLLEGE ADMISSIONS<br><br>
-                            <img class="px-3 py-1" src="../assets/icons/dollar-sign.svg"> SCHOLARSHIPS + F.A.<br><br>
+                             <span onmouseover="glow('hs-work')" onmouseout="unglow('hs-work')"><img class="px-3 py-1 timeline-point" src="../assets/icons/book-open.svg"> HIGH SCHOOL COURSEWORK<br><br></span></span>
+                            <span onmouseover="glow('summer-opp')" onmouseout="unglow('summer-opp')"><img class="px-3 py-1 timeline-point" src="../assets/icons/zap.svg"> SUMMER OPPORTUNITIES<br><br></span>
+                            <span onmouseover="glow('profile-dev')" onmouseout="unglow('profile-dev')" ><img class="px-3 py-1 timeline-point" src="../assets/icons/user.svg"> PROFILE DEVELOPMENT<br><br></span>
+                            <span onmouseover="glow('admissions')" onmouseout="unglow('admissions')"><img class="px-3 py-1 timeline-point" src="../assets/icons/user-check.svg"> COLLEGE ADMISSIONS<br><br></span>
+                            <span onmouseover="glow('scholarships-and-fa')" onmouseout="unglow('scholarships-and-fa')"><img class="px-3 py-1 timeline-point" src="../assets/icons/dollar-sign.svg"> SCHOLARSHIPS + F.A.<br><br></span>
                         </div>
                     </li>
                 </ul>
@@ -176,11 +176,11 @@
                        data-toggle="collapse"
                        href="#hs-work-collapse" role="button" aria-expanded="false"
                        aria-controls="hs-work-collapse">
-                        <div class="card-green-outline">
+                        <div class="card-green-outline" id="hs-work">
                             <img src="../assets/icons/book-open.svg"><br><br>
                             <span class="chevron" id="hs-work-chevron">›</span> HIGH
                             SCHOOL COURSEWORK
-                            <div class="collapse py-3" id="hs-work-collapse">
+                            <div class="collapse" id="hs-work-collapse">
                                 <hr>
                                 <p class="consulting-services">
                                     Academic Planning, Skill Development and Instructional Services for High
@@ -197,11 +197,11 @@
                        data-toggle="collapse"
                        href="#summer-opp-collapse" role="button" aria-expanded="false"
                        aria-controls="summer-opp-collapse">
-                        <div class="card-green-outline">
+                        <div class="card-green-outline" id="summer-opp">
                             <img src="../assets/icons/zap.svg"><br><br>
                             <span class="chevron" id="summer-opp-chevron">›</span> SUMMER
                             OPPORTUNITIES
-                            <div class="collapse py-3" id="summer-opp-collapse">
+                            <div class="collapse " id="summer-opp-collapse">
                                 <hr>
                                 <p class="consulting-services">
                                     Advising for Research Program Admissions, Pre-College Enrichment and
@@ -218,10 +218,10 @@
                        data-toggle="collapse"
                        href="#profile-dev-collapse" role="button" aria-expanded="false"
                        aria-controls="profile-dev-collapse">
-                        <div class="card-green-outline">
+                        <div class="card-green-outline" id="profile-dev">
                             <img src="../assets/icons/user.svg"><br><br>
                             <span class="chevron" id="profile-dev-chevron">›</span> PERSONAL PROFILE DEVELOPMENT
-                            <div class="collapse py-3" id="profile-dev-collapse">
+                            <div class="collapse " id="profile-dev-collapse">
                                 <hr>
                                 <p class="consulting-services">
                                     Academic Advising, Extracurricular Activities Planning, and Personal
@@ -238,10 +238,10 @@
                        data-toggle="collapse"
                        href="#admissions-collapse" role="button" aria-expanded="false"
                        aria-controls="admissions-collapse">
-                        <div class="card-green-outline">
+                        <div class="card-green-outline" id="admissions">
                             <img src="../assets/icons/user-check.svg"><br><br>
                             <span class="chevron" id="admissions-chevron">›</span> COLLEGE ADMISSIONS
-                            <div class="collapse py-3" id="admissions-collapse">
+                            <div class="collapse " id="admissions-collapse">
                                 <hr>
                                 <p class="consulting-services">
                                     Advising and Essay Development for Common Application / UC System /
@@ -258,10 +258,10 @@
                        data-toggle="collapse"
                        href="#scholarships-and-fa-collapse" role="button" aria-expanded="false"
                        aria-controls="scholarships-and-fa-collapse">
-                        <div class="card-green-outline">
+                        <div class="card-green-outline" id="scholarships-and-fa">
                             <img src="../assets/icons/dollar-sign.svg"><br><br>
                             <span class="chevron" id="scholarships-and-fa-chevron">›</span> SCHOLARSHIPS + FINANCIAL AID
-                            <div class="collapse py-3" id="scholarships-and-fa-collapse">
+                            <div class="collapse " id="scholarships-and-fa-collapse">
                                 <hr>
                                 <p class="consulting-services">
                                     Advising for Canadian Scholarship Applications + US Financial Aid
@@ -1811,6 +1811,15 @@
         $(".ap-card").css({height: targetHeight})
         document.getElementById("tutoring").classList.add("hidden")
     });
+
+    function glow(id){
+        console.log(id)
+        document.getElementById(id).classList.add("glow")
+    }
+
+    function unglow(id){
+        document.getElementById(id).classList.remove("glow")
+    }
 
     $('.ap-collapse').on('shown.bs.collapse', function () {
         console.log("collapse")

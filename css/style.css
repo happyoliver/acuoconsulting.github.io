@@ -58,6 +58,12 @@ h3 {
     box-shadow: 0 0px 15px rgba(0, 196, 157, .4);
 }
 
+.card-green-outline.glow {
+    /*transform: translateY(-10px);*/
+    box-shadow: 0 0px 50px rgba(0, 196, 157, .4);
+}
+
+
 
 a:hover, a:visited, a:link, a:active {
     color: white;
@@ -335,4 +341,8 @@ hr {
 
 .bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
   border-top-color: #00c49d !important;
+}
+
+.timeline-point{
+    z-index: 999999999;
 }
