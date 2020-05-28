@@ -31,6 +31,10 @@ h1 {
     font-size: 5vh;
 }
 
+h2{
+    font-size: 1.6em;
+}
+
 h3 {
     transition: all 1s ease-in-out;
 }
@@ -55,7 +59,7 @@ h3 {
 
 .button-green:hover {
     /*transform: translateY(-10px);*/
-    box-shadow: 0 0px 15px rgba(0, 196, 157, .4);
+    box-shadow: 0 0px 30px rgba(0, 196, 157, .4);
 }
 
 .card-green-outline.glow {
@@ -146,7 +150,7 @@ hr {
     max-width: 1080px;
     height: 250px;
     overflow: hidden;
-    margin: 50px auto;
+    margin: 25px auto;
 }
 
 .accordion ul {
@@ -345,4 +349,14 @@ hr {
 
 .timeline-point{
     z-index: 999999999;
+}
+
+.linked-in-icon{
+    opacity: 0.5;
+    transition: all 0.5s ease-in-out;
+}
+
+.linked-in-icon:hover{
+    opacity: 1;
+    box-shadow: 0 0px 20px rgba(0, 196, 157, .4);
 }
