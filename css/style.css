@@ -13,29 +13,37 @@ html {
 }
 
 
-
-*{
-    font-family: acre; !important;
+* {
+    font-family: acre;
+!important;
     color: white;
 }
 
-p{
+p {
     font-size: 2.5vh;
 }
 
-div p{
+div p {
     font-size: larger;
 }
 
-h1{
+h1 {
     font-size: 5vh;
 }
 
-.nav-link{
+h2{
+    font-size: 1.6em;
+}
+
+h3 {
+    transition: all 1s ease-in-out;
+}
+
+.nav-link {
     padding: 15px 32px;
 }
 
-.button-green{
+.button-green {
     background-color: #00c49d;
     border: none;
     color: white;
@@ -46,10 +54,22 @@ h1{
     display: inline-block;
     border-radius: 50px;
     font-weight: bold;
+    transition: all 0.3s ease-in-out;
 }
 
-a:hover, a:visited, a:link, a:active
-{
+.button-green:hover {
+    /*transform: translateY(-10px);*/
+    box-shadow: 0 0px 30px rgba(0, 196, 157, .4);
+}
+
+.card-green-outline.glow {
+    /*transform: translateY(-10px);*/
+    box-shadow: 0 0px 50px rgba(0, 196, 157, .4);
+}
+
+
+
+a:hover, a:visited, a:link, a:active {
     color: white;
     text-decoration: none;
 }
@@ -65,15 +85,16 @@ body {
     width: 10px;
     background: transparent;
 }
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: rgba(256,256,256,0.25);
+    background: rgba(256, 256, 256, 0.25);
     border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(256,256,256,0.5);
+    background: rgba(256, 256, 256, 0.5);
     border-radius: 10px;
 }
 
@@ -83,8 +104,16 @@ body {
     background-color: #00c49d;
 }
 
-.acuo-green{
+.section {
+    min-height: 100vh;
+}
+
+.acuo-green {
     color: #00c49d;
+}
+
+.warning-red {
+    color: coral !important;
 }
 
 .card-green {
@@ -100,17 +129,18 @@ body {
     padding: 20px;
     height: 100%;
     overflow: hidden;
+    transition: all 0.3s ease-in-out;
 }
 
-.hidden{
+.hidden {
     display: none;
 }
 
-hr{
+hr {
     border-top: 1px solid #00c49d;
 }
 
-.profile-picture{
+.profile-picture {
     border: solid #00c49d 5px;
     border-radius: 25px;
 }
@@ -120,8 +150,9 @@ hr{
     max-width: 1080px;
     height: 250px;
     overflow: hidden;
-    margin: 50px auto;
+    margin: 25px auto;
 }
+
 .accordion ul {
     width: 100%;
     display: table;
@@ -129,6 +160,7 @@ hr{
     margin: 0;
     padding: 0;
 }
+
 .accordion ul li {
     display: table-cell;
     vertical-align: bottom;
@@ -140,11 +172,13 @@ hr{
     transition: all 500ms ease;
 
 }
+
 .accordion ul li div {
     display: block;
     overflow: hidden;
     width: 100%;
 }
+
 .accordion ul li div a {
     display: block;
     height: 250px;
@@ -162,6 +196,7 @@ hr{
     border-radius: 10px;
     overflow: hidden;
 }
+
 .accordion ul li div a * {
     /*opacity: 0;*/
     margin: 0;
@@ -182,20 +217,25 @@ hr{
 .accordion ul:hover li, .accordion ul:focus-within li {
     width: 8%;
 }
+
 .accordion ul li:focus {
     outline: none;
 }
+
 .accordion ul:hover li:hover, .accordion ul li:focus, .accordion ul:focus-within li:focus {
     width: 60%;
 }
+
 .accordion ul:hover li:hover a *, .accordion ul li:focus a *, .accordion ul:focus-within li:focus a * {
     opacity: 1;
     -webkit-transform: translateX(0);
     transform: translateX(0);
 }
+
 .accordion ul:hover li {
     width: 8% !important;
 }
+
 .accordion ul:hover h2 {
     opacity: 0 !important;
 }
@@ -229,7 +269,7 @@ hr{
     width: 60% !important;
 }
 
-.accordion ul:hover li:hover h3{
+.accordion ul:hover li:hover h3 {
     width: 60% !important;
 }
 
@@ -238,13 +278,16 @@ hr{
     -webkit-transform: translateX(0);
     transform: translateX(0);
 }
+
 @media screen and (max-width: 600px) {
     body {
         margin: 0;
     }
+
     .accordion {
         height: auto;
     }
+
     .accordion ul li, .accordion ul:hover li, .accordion ul li:hover, .accordion ul:hover li:hover {
         position: relative;
         display: table;
@@ -255,7 +298,7 @@ hr{
     }
 }
 
-.qualification-icon{
+.qualification-icon {
     min-height: 80px;
 }
 
@@ -280,14 +323,40 @@ hr{
     }
 }
 
-.chevron{
+.chevron {
     color: #00c49d;
 }
 
-.navbar{
+.navbar {
     transition: transform 300ms;
 }
 
 .hide {
     transform: translateY(-10vh);
+}
+
+.consulting-services {
+    font-size: medium;
+}
+
+.tooltip > .tooltip-inner {
+    background-color: #00c49d;
+}
+
+.bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+  border-top-color: #00c49d !important;
+}
+
+.timeline-point{
+    z-index: 999999999;
+}
+
+.linked-in-icon{
+    opacity: 0.5;
+    transition: all 0.5s ease-in-out;
+}
+
+.linked-in-icon:hover{
+    opacity: 1;
+    box-shadow: 0 0px 20px rgba(0, 196, 157, .4);
 }

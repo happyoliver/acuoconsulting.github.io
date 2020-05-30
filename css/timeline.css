@@ -79,6 +79,7 @@
 }
 /*----- TIMELINE CONTENT -----*/
 .timeline-content {
+    z-index: -99999999;
     padding-bottom: 40px;
 }
 .timeline-content p:last-child {
