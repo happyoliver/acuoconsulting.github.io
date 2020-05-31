@@ -66,35 +66,36 @@
 
 <div class="container py-2" id="main-container">
     <form id="registration_form">
-        <h5>To get started with <span class="acuo-green">Acuo</span>, fill out some information about you or your child,
-            and we'll get back to you with a <span class="acuo-green">free consultation</span> in <span
-                    class="acuo-green text-nowrap">1-3</span> business days.</h5>
+        <h5>
+            要开始使用<span class="acuo-green">Acuo</span>，请填写有关您或您的孩子的一些信息，我们会在<span
+                    class="acuo-green text-nowrap">1-3</span>个工作日内为您提供<span class="acuo-green">免费咨询</span>，并与您联系。
+        </h5>
         <br><br>
-        <p class="">Student's Full Name </p>
+        <p class="">学生的全名</p>
         <input class="" type="text" value="" placeholder="John Smith (First, Last)" name="fullname"
                style="width: auto" id="fullname">
         <br><br>
-        <p class="">Email</p>
+        <p class="">电子邮件地址</p>
         <input class="" type="text" value="" placeholder="johnsmith@gmail.com" name="email"
                style="width: auto" id="email">
         <br><br>
-        <p class="">Phone Number</p>
+        <p class="">电话号码</p>
         <input class="" type="text" value="" placeholder="604-888-8888" name="phone"
                style="width: auto" id="phone">
         <br><br>
-        <p class="py-4" style="float: left; ">I am a</p>
+        <p class="py-4" style="float: left; ">我是</p>
         <div class="input-field px-3 s12 d-inline-block" id="type">
             <select name="type" form="registration_form">
-                <option value="" selected>Choose your option</option>
-                <option value="1">Parent</option>
-                <option value="2">Student</option>
+                <option value="" selected></option>
+                <option value="1">家长</option>
+                <option value="2">学生</option>
             </select>
         </div>
         <br><br>
-        <p class="">Student's Grade in September</p>
+        <p class="">学生在九月份的年级</p>
         <div class="input-field s12" id="grade">
             <select name="grade" form="registration_form">
-                <option value="" selected>Choose your grade</option>
+                <option value="" selected></option>
                 <option value="8">8</option>
                 <option value="9">9</option>
                 <option value="10">10</option>
@@ -103,31 +104,31 @@
             </select>
         </div>
 
-        <p class="py-4" style="float: left; ">I am interested in</p>
+        <p class="py-4" style="float: left; ">我想要的服务是</p>
         <div class="input-field s12 d-inline-block px-3" id="service">
             <select multiple name="service" form="registration_form">
-                <option value="1">High School Coursework Instruction</option>
-                <option value="2">SAT, ACT, SAT Subject Test Preparation</option>
-                <option value="3">AP Exam Preparation</option>
-                <option value="4">College Admissions Consultation</option>
-                <option value="5">Personal Profile Development</option>
-                <option value="6">Other</option>
+                <option value="1">课业辅导</option>
+                <option value="2">SAT, ACT, SAT Subject Test辅导</option>
+                <option value="3">AP考试辅导</option>
+                <option value="4">大学申请咨询</option>
+                <option value="5">个人履历拓展机会</option>
+                <option value="6">其他的服务</option>
             </select>
         </div>
         <br><br>
-        <p class="">Link to Student's Resume or CV (Optional)</p>
+        <p class="">学生简历的网址</p>
         <input class="px-3 d-inline-block" type="text" placeholder="https://drive.google.com/file/d/1234asdf"
                name="resume" id="resume">
         <br><br>
         <p>
-            Any other questions?
+            还有其他问题吗？
         </p>
         <textarea id="questions" name="questions" class="materialize-textarea"
-                  placeholder="Additional questions..."></textarea>
+                  placeholder="其他问题..."></textarea>
         <br><br>
         <div class="py-5">
             <button data-sitekey="6LcHI_sUAAAAAIlWML-WH1wHMP2XOmjsi1o8ReAV" data-callback="submit" data-action="submit"
-                    style="cursor: pointer" class="button-green g-recaptcha">SUBMIT
+                    style="cursor: pointer" class="button-green g-recaptcha">提交
             </button>
         </div>
     </form>
@@ -135,7 +136,7 @@
 
 <div class="container text-center py-5">
     <p>
-        If you have any technical issues, please email <u><a href="mailto:contact@acuo.ca"> contact@acuo.ca</a></u>
+        如果您有任何问题，请发送电子邮件至 <u><a href="mailto:contact@acuo.ca"> contact@acuo.ca</a></u>
     </p>
 </div>
 
@@ -221,7 +222,7 @@
                 Swal.fire({
                     position: 'top',
                     icon: 'error',
-                    title: 'Invalid email format.',
+                    title: '电子邮件不合格',
                     showConfirmButton: false,
                     timer: 2000,
                     backdrop: false,
@@ -241,7 +242,7 @@
                 Swal.fire({
                     position: 'top',
                     icon: 'error',
-                    title: 'Invalid phone format.',
+                    title: '电话号码不合格',
                     showConfirmButton: false,
                     timer: 2000,
                     backdrop: false,
@@ -258,7 +259,7 @@
                 Swal.fire({
                     position: 'top',
                     icon: 'error',
-                    title: 'Invalid URL for your resume.',
+                    title: '学生简历的网址不合格',
                     showConfirmButton: false,
                     timer: 2000,
                     backdrop: false,
@@ -280,7 +281,7 @@
     function submit(token) {
         if (validate_responses()) {
             Swal.fire({
-                title: 'Saving your information...',
+                title: '我们正在保存您的信息...',
                 allowOutsideClick: false,
                 allowEscapeKey: false,
                 allowEnterKey: false,
@@ -300,39 +301,39 @@
                 success: function () {
                     Swal.fire({
                         icon: 'success',
-                        title: "Your response has been submitted successfully.",
-                        html: '<span style="color: black">We\'ll get back to you in 1-3 business days.</span>',
-                        footer: '<a href="/" style="color: dodgerblue">Go back to the home page</a>'
+                        title: "您的回复已成功提交。",
+                        html: '<span style="color: black">我们会在1-3个工作日内与您联系。</span>',
+                        footer: '<a href="/" style="color: dodgerblue">返回首页</a>'
                     })
                 },
                 error: function (xhr) {
                     if (xhr.status === 422) {
                         Swal.fire({
                             icon: 'error',
-                            title: "One of your responses is invalid.",
-                            html: '<span style="color: black">Double check your responses.</span>',
-                            footer: '<a href="mailto:contact@acuo.ca" style="color: dodgerblue">If you think this is an error, please email contact@acuo.ca</a>'
+                            title: "您的回应不合格。",
+                            html: '<span style="color: black">仔细检查您的回应。</span>',
+                            footer: '<a href="mailto:contact@acuo.ca" style="color: dodgerblue">如果您认为这是一个错误，请发送电子邮件至contact@acuo.ca</a>'
                         })
                     } else if (xhr.status === 403) {
                         Swal.fire({
                             icon: 'error',
-                            title: "You are a robot.",
-                            html: '<span style="color: black">Beep boop bop.</span>',
-                            footer: '<a href="mailto:contact@acuo.ca" style="color: dodgerblue">If you think this is an error, please email contact@acuo.ca</a>'
+                            title: "你是一个机器人。",
+                            html: '<span style="color: black">🤖🤖🤖</span>',
+                            footer: '<a href="mailto:contact@acuo.ca" style="color: dodgerblue">如果您认为这是一个错误，请发送电子邮件至contact@acuo.ca</a>'
                         })
                     } else if (xhr.status === 401) {
                         Swal.fire({
                             icon: 'error',
-                            title: "You've been here before!",
-                            html: '<span style="color: black">This email has already been used.<span>',
-                            footer: '<a href="mailto:contact@acuo.ca" style="color: dodgerblue">If you think this is an error, please email contact@acuo.ca</a>'
+                            title: "你以前来过这里！",
+                            html: '<span style="color: black">这个电子邮件已被使用过.<span>',
+                            footer: '<a href="mailto:contact@acuo.ca" style="color: dodgerblue">如果您认为这是一个错误，请发送电子邮件至contact@acuo.ca</a>'
                         })
                     } else {
                         Swal.fire({
                             icon: 'error',
-                            title: "Something went wrong when submitting your response.",
-                            html: '<span style="color: black">Try again in a few minutes, or email <a style="color: #00c49d" href="mailto:support@acuo.ca">support@acuo.ca</a>.</span>',
-                            footer: '<a href="/" style="color: dodgerblue">Go back to the home page</a>'
+                            title: "提交您的回复时出现问题。",
+                            html: '<span style="color: black">请在几分钟后重试，或发送电子邮件至<a href="mailto:contact@acuo.ca" style="color: dodgerblue">contact@acuo.ca</a></span>',
+                            footer: '<a href="/" style="color: dodgerblue">返回首页</a>'
                         })
                     }
 

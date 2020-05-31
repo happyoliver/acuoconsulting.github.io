@@ -1,6 +1,8 @@
 import sys
 import traceback
-from flask import Flask, request, render_template, send_from_directory, Response
+
+import pytz
+from flask import Flask, request, render_template, send_from_directory, Response, session, jsonify, redirect
 import validators
 from util.validate import validate_email
 from util.validate import validate_phone
@@ -11,13 +13,28 @@ import util.env
 from util.mail import send_email
 from requests import get, post
 from os import environ
+import os
+from google.oauth2 import id_token
+from google.auth.transport import requests
+import json
+import time
+from datetime import datetime
+from calendar import timegm
+from functools import cmp_to_key
+from pytz import timezone
 
 sanitizer = Sanitizer()
 
 app = Flask(__name__)
 
-app.secret_key = 'Zli6WMDUEboJnp34fzwK'.encode('utf8')
+app.secret_key = environ['session-key'].encode('utf8')
 
+@app.before_request
+def before_request():
+    if 'lang' in request.args:
+        session['lang'] = request.args['lang']
+    elif 'lang' not in session:
+        session['lang'] = 'en'
 
 @app.route('/assets/<path>')
 def send_assets(path):
@@ -56,22 +73,112 @@ def send_js(path):
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    try:
+        if 'signed-in' not in session or (not session['signed-in'] or not session['is-admin']):
+            date_format = '%m/%d/%Y %H:%M:%S %Z'
+            date = datetime.now(tz=pytz.utc)
+            date = date.astimezone(timezone('US/Pacific'))
+            if request.headers.getlist("X-Forwarded-For"):
+                ip = request.headers.getlist("X-Forwarded-For")[0]
+            else:
+                ip = request.remote_addr
+            db.collection('traffic').document(str(int(time.time()))).set({
+                "time": date,
+                "ip": ip
+            })
+            stats_ref = db.collection('traffic').document('0')
+            stats = stats_ref.get().to_dict()
+            stats_ref.update({
+                'total': stats['total'] + 1
+            })
+    except Exception as e:
+        traceback.print_exc()
+    if session['lang'] == "ch":
+        return render_template("chinese.html")
+    else:
+        return render_template("index.html")
 
 
 @app.route('/register')
 def register():
-    return render_template("register.html")
+    if session['lang'] == "ch":
+        return render_template("register-chinese.html")
+    else:
+        return render_template("register.html")
+
+
+@app.route('/hourlogger')
+def hourlogger():
+    return render_template("hourlogger.html")
 
 
 @app.route('/valemail')
 def validate_requested_email():
-    return validate_email(request.args.get("email"))
+    return True
+    # return validate_email(request.args.get("email"))
 
 
 @app.route('/valphone')
 def validate_requested_phone():
-    return validate_phone(request.args.get("phone"))
+    return True
+    # return validate_phone(request.args.get("phone"))
+
+
+@app.route('/tokensignin', methods=['POST'])
+def token_sign_in():
+    # Specify the CLIENT_ID of the app that accesses the backend:
+    token = json.loads(request.get_data())["id_token"]
+    idinfo = id_token.verify_oauth2_token(token, requests.Request(), environ['goauth-id'])
+    # Or, if multiple clients access the backend server:
+    # idinfo = id_token.verify_oauth2_token(token, requests.Request())
+    # if idinfo['aud'] not in [CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]:
+    #     raise ValueError('Could not verify audience.')
+    verified_account = True
+    if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
+        verified_account = False
+    session['is-admin'] = False
+    session['signed-in'] = True
+    docs = db.collection(u'admins').where(u'email', u'==', idinfo['email']).stream()
+    for doc in docs:
+        session['is-admin'] = True
+    session['google-account'] = idinfo
+    response = {
+        "is_admin": session['is-admin'],
+        "verified_account": verified_account,
+        "signed_in": session['signed-in']
+    }
+    return jsonify(response)
+
+
+@app.route('/getData')
+def getData():
+    response = []
+    docs = db.collection('transactions').stream()
+    for doc in docs:
+        dictionary = doc.getDict()
+        utc_time = time.strptime(dictionary['date'], "%m/%d/%Y")
+        dictionary["epoch"] = timegm(utc_time)
+        response.append(dictionary)
+
+    def cmp_items(a, b):
+        if a['epoch'] > b['epoch']:
+            return 1
+        elif a['epoch'] == b['epoch']:
+            return 0
+        else:
+            return -1
+
+    cmp_items_py3 = cmp_to_key(cmp_items)
+
+    response.sort(cmp_items_py3)
+    return json.dumps(response)
+
+
+@app.route('/signout')
+def signout():
+    session['is-admin'] = False
+    session['google-account'] = None
+    session['signed-in'] = False
 
 
 @app.route('/add', methods=["POST"])
@@ -95,11 +202,12 @@ def add_new_user():
         return Response(status=403)
 
     service_map = {
-        "1": "General Instruction",
-        "2": "Standardized Testing Preparation",
-        "3": "College Admissions Consultation",
-        "4": "Personal Profile Development",
-        "5": "Other"
+        "1": "High School Coursework Instruction",
+        "2": "SAT/ACT/SAT Subject Test Preparation",
+        "3": "AP Exam Preparation",
+        "4": "College Admissions Consultation",
+        "5": "Personal Profile Development",
+        "6": "Other"
     }
     i = 0
     if isinstance(data['service'], list):
@@ -110,28 +218,38 @@ def add_new_user():
         data['service'] = service_map[data['service']]
     data['type'] = "Parent" if data['type'] == 1 else "Student"
     if validate_email(data['email']) and validate_phone(data['phone']):
-        try:
-            new_id = data['fullname'].replace(" ", "") + str(int(time.time()))
-            db.collection(u'registrants').document(new_id).set(data)
-            send_email("New Student, " + new_id, """
-            New registrant
-            Firebase ID: {}
-            Full Name: {}
-            Email: {}
-            Phone: {}
-            Type: {}
-            Grade: {}
-            Services: {}
-            Resume: {}
-            Other Questions: {}
-            """.format(new_id, data['fullname'], data['email'], data['phone'], data['type'], data['grade'],
-                       data['service'], data['resume'], data['questions']), "contact@acuo.ca")
-            return Response(status=200)
-        except Exception as e:
-            traceback.print_exc(file=sys.stdout)
-            return Response(status=500)
+        if isNovelEmail(data['email']):
+            try:
+                new_id = data['fullname'].replace(" ", "") + str(int(time.time()))
+                db.collection(u'registrants').document(new_id).set(data)
+                send_email("New Student, " + new_id, """
+                New registrant
+                Firebase ID: {}
+                Full Name: {}
+                Email: {}
+                Phone: {}
+                Type: {}
+                Grade: {}
+                Services: {}
+                Resume: {}
+                Other Questions: {}
+                """.format(new_id, data['fullname'], data['email'], data['phone'], data['type'], data['grade'],
+                           data['service'], data['resume'], data['questions']), "contact@acuo.ca")
+                return Response(status=200)
+            except Exception as e:
+                traceback.print_exc(file=sys.stdout)
+                return Response(status=500)
+        else:
+            return Response(status=401)
     else:
         return Response(status=422)
+
+
+def isNovelEmail(email):
+    docs = db.collection(u'registrants').where(u'email', u'==', email).stream()
+    for doc in docs:
+        return False
+    return True
 
 
 if __name__ == '__main__':

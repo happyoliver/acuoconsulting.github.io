@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Acuo</title>
+    <link rel="icon" href="../assets/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="google-signin-client_id"
+          content="763327857769-oq010g48mmfgna5qn905qlgfl1c71la2.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/materialize.css">
+    <style>
+        .abcRioButtonContents span {
+            color: #757575 !important;
+        }
+    </style>
+</head>
+<body style="background-color: #1a1a1a">
+
+
+<div class="container text-center" id="login" style="height: 100vh">
+    <div class="container text-center p-5">
+        <a href="/"><img src="../assets/logo.svg" style="width: 5vw"></a>
+        <br><br><br>
+        <a href="/"><img src="../assets/icons/arrow-left.svg" style="height: 1vw" id="left-arrow"></a>
+    </div>
+    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%)">
+        <h2 id="auth-message" style="font-size: 3em">Sign in with Google</h2>
+        <br>
+        <div class="g-signin2" style="position: absolute; left: 50%; transform: translate(-50%);" id="gsign-in-button"
+             data-onsuccess="onSignIn"></div>
+    </div>
+</div>
+
+<div class="container text-center hidden" id="app">
+    <div class="container text-center p-5">
+        <img src="" id="g-profile-pic" style="width: 3vw; border-radius: 200%; border: #00c49d solid 3px;">
+        <br><br>
+        <h1 style="font-size: 3em"><span id="greeting"></span>, <span class="acuo-green" id="g-name"></span>.</h1>
+        <br>
+        <h5 class="acuo-green" style="letter-spacing: 0.1em">ADMIN</h5>
+    </div>
+    <div class="text-left">
+        <h2 style="font-size: 2rem">Summary</h2>
+    </div>
+    <hr>
+    <div class="row text-left">
+        <div class="col">
+            <h6 class="acuo-green">BALANCE</h6>
+            <span class="summary-statistics money" id="balance">0.00</span>
+        </div>
+        <div class="col">
+            <h6 class="acuo-green">PENDING DEPOSITS</h6>
+            <span class="summary-statistics money" id="pending-fees">0.00</span>
+        </div>
+        <div class="col">
+            <h6 class="acuo-green">TOTAL HOURS</h6>
+            <span class="summary-statistics" id="total-hours">0</span>
+        </div>
+        <div class="col">
+            <h6 class="acuo-green">TOTAL CLIENTS</h6>
+            <span class="summary-statistics" id="total-clients">0</span>
+        </div>
+    </div>
+    <br><br>
+    <div class="text-left no-gutters row align-items-center">
+        <div class="col no-gutters" style="font-size: 2em">
+            Transactions
+        </div>
+        <div class="col text-right">
+            <a class="button-green">EXPORT CSV</a>
+        </div>
+    </div>
+    <hr>
+    <div class="row align-items-center">
+        <div class="col">
+            <input type="text" placeholder="Search transactions">
+        </div>
+        <div class="col-sm-auto px-3">
+            <label onclick="filter('all')" class="filter selected-filter" id="all">All</label>
+        </div>
+        <div class="col-sm-auto px-3">
+            <label onclick="filter('revenue')" class="filter" id="revenue">Revenue</label>
+        </div>
+        <div class="col-sm-auto px-3">
+            <label onclick="filter('fees')" class="filter" id="fees">Fees</label>
+        </div>
+    </div>
+    <a><img src="../assets/icons/plus-circle.svg" style="height: 3vh"></a>
+    <br><br>
+    <div class="card-white add-hover" style="position: relative">
+        <img src="../assets/profile-pictures/charley.png"
+             style="border-radius: 100%; border: 2px solid forestgreen; height: 4vh; position: absolute; left: -2vh; top: 50%; transform: translateY(-50%)">
+        <div class="row justify-content-between align-items-center" style="margin-bottom: 0">
+            <div class="col-sm-auto">
+                <span class="attribute-label">Client</span><br>
+                none
+            </div>
+            <div class="col-sm-auto">
+                <span class="attribute-label">Instructor</span><br>
+                <span style="color: forestgreen">Charley Cai</span>
+            </div>
+            <div class="col-sm-auto">
+                <span class="attribute-label">Date</span><br>
+                March 14, 2020
+            </div>
+            <div class="col-sm-auto">
+                <span class="attribute-label">Description</span><br>
+                Domain Acquisition
+            </div>
+            <div class="col-sm-auto">
+                <span class="attribute-label">Charge</span><br>
+                $0.00
+            </div>
+            <div class="col-sm-auto">
+                <span class="attribute-label">Client Payment</span><br>
+                $0.00
+            </div>
+            <div class="col-sm-auto">
+                <span class="attribute-label">Payment</span><br>
+                -$24.13
+            </div>
+            <div class="col-md-5 slide" style="position: absolute; left: 0;">
+                <a class="button-red" href="#">Mark as paid</a>
+                <a class="button-red" href="#">Mark as complete</a>
+                <a class="button-black" href="#">Details</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"
+        integrity="sha256-hBMojZuWKocCflyaG8T19KBq9OlTlK39CTxb8AUWKhY=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="../js/materialize.min.js"></script>
+<script src="../js/jstz.main.js"></script>
+<script src="../js/main.js"></script>
+<script>
+    function onSignIn(googleUser) {
+        console.log("Sign in")
+        var profile = googleUser.getBasicProfile();
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log(profile)
+        $.ajax({
+            type: "POST",
+            url: "/tokensignin",
+            data: '{"id_token":"' + id_token.toString() + '"}',
+            contentType: "application/json; charset=utf-8",
+            success(response) {
+                if (!response['verified_account']) {
+                    document.getElementById("auth-message").innerText = "You were not succesfully logged in. Try again?"
+                    document.getElementById("auth-message").classList.add("warning-red")
+                } else if (!response['is_admin']) {
+                    document.getElementById("auth-message").innerText = "You are not authorized to use this page."
+                    document.getElementById("auth-message").classList.add("warning-red")
+                } else {
+                    document.getElementById("auth-message").innerText = "Loading Acuo HourLogger..."
+                    document.getElementById("auth-message").classList.add("acuo-green")
+                    document.getElementById("auth-message").classList.remove("warning-red")
+                    document.getElementById("gsign-in-button").classList.add("hidden")
+                    document.getElementById("login").classList.add("hidden")
+                    document.getElementById("app").classList.remove("hidden")
+                    document.getElementById("g-profile-pic").src = profile["SK"]
+                    document.getElementById("g-name").innerText = profile["Bd"]
+                    timezone = jstz.determine()
+                    date = new Date()
+                    currentHour = parseInt(date.toLocaleString('en-GB', {hour: '2-digit', timezone: timezone.name()}))
+                    if ((currentHour >= 17 && currentHour <= 23) || (currentHour > 0 && currentHour <= 4)) {
+                        document.getElementById("greeting").innerText = "Good evening"
+                    } else if ((currentHour >= 5 && currentHour <= 11)) {
+                        document.getElementById("greeting").innerText = "Good morning"
+                    } else if ((currentHour >= 12 && currentHour <= 16)) {
+                        document.getElementById("greeting").innerText = "Good afternoon"
+                    }
+
+                }
+            }
+        })
+    }
+
+    function getTransactionData(sort = "date", filters = [], search="") {
+        filterString = ""
+        for(f in filters){
+            filterString += filters[f] + (parseInt(f) === filters.length - 1 ? "" : ",")
+        }
+        $.ajax({
+            type: "GET",
+            url: "/getData?sort=" + sort + "&filter=" + filterString + "&search=" + search,
+            success(response) {
+
+            }
+        })
+    }
+
+    function filter(parameter) {
+        console.log($('.filter'))
+        $('.filter').removeClass("selected-filter")
+        $('#' + parameter).addClass("selected-filter")
+    }
+
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            $.ajax({
+                type: "GET",
+                url: "/signout"
+            })
+        });
+    }
+</script>
+</body>
+</html>
