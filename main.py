@@ -140,7 +140,10 @@ def token_sign_in():
     session['signed-in'] = True
     docs = db.collection(u'admins').where(u'email', u'==', idinfo['email']).stream()
     for doc in docs:
+        data = doc.to_dict()
         session['is-admin'] = True
+        session['colour'] = data['colour']
+        session['profile_picture'] = data['profile_picture']
     session['google-account'] = idinfo
     response = {
         "is_admin": session['is-admin'],
@@ -155,7 +158,7 @@ def getData():
     response = []
     docs = db.collection('transactions').stream()
     for doc in docs:
-        dictionary = doc.getDict()
+        dictionary = doc.to_dict()
         utc_time = time.strptime(dictionary['date'], "%m/%d/%Y")
         dictionary["epoch"] = timegm(utc_time)
         response.append(dictionary)
@@ -170,7 +173,7 @@ def getData():
 
     cmp_items_py3 = cmp_to_key(cmp_items)
 
-    response.sort(cmp_items_py3)
+    response.sort(key=cmp_items_py3)
     return json.dumps(response)
 
 
@@ -210,12 +213,15 @@ def add_new_user():
         "6": "Other"
     }
     i = 0
-    if isinstance(data['service'], list):
-        for service in data['service']:
-            data['service'][i] = service_map[service]
-            i += 1
+    if 'service' in data:
+        if isinstance(data['service'], list):
+            for service in data['service']:
+                data['service'][i] = service_map[service]
+                i += 1
+        else:
+            data['service'] = service_map[data['service']]
     else:
-        data['service'] = service_map[data['service']]
+        data['service'] = ""
     data['type'] = "Parent" if data['type'] == 1 else "Student"
     if validate_email(data['email']) and validate_phone(data['phone']):
         if isNovelEmail(data['email']):

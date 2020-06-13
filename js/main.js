@@ -81,19 +81,3 @@ function getRemoveTarget(object) {
     }
 }
 
-$(".add-hover").hover(function () {
-
-    animeTarget = getRemoveTarget(this);
-    anime({
-        targets: animeTarget,
-        opacity: 1,
-        translateY: '-100%',
-    });
-}, function () {
-    animeTarget = getRemoveTarget(this);
-    anime({
-        targets: animeTarget,
-        opacity: 0,
-        translateY: 0,
-    });
-});

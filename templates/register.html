@@ -205,7 +205,7 @@
         values = getFormData($('#registration_form'))
         invalid = []
         for (key in values) {
-            if (!values[key] && key !== 'questions' && key !== 'resume') {
+            if (!values[key] && key !== 'questions' && key !== 'resume' && key !== 'grade' && key !== 'services' && key !== 'type') {
                 $('#' + key).prev()[0].classList.add("warning-red");
                 invalid.push(key)
             } else {

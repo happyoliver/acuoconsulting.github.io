@@ -57,6 +57,20 @@ h3 {
     transition: all 0.3s ease-in-out;
 }
 
+.button-blue {
+    background-color: dodgerblue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    display: inline-block;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
 .button-red {
     background-color: lightcoral;
     border: none;

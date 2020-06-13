@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<div class="container text-center hidden" id="app">
+<div class="container-fluid text-center hidden" id="app" style="padding-left: 10em;padding-right: 10em;">
     <div class="container text-center p-5">
         <img src="" id="g-profile-pic" style="width: 3vw; border-radius: 200%; border: #00c49d solid 3px;">
         <br><br>
@@ -90,45 +90,63 @@
     </div>
     <a><img src="../assets/icons/plus-circle.svg" style="height: 3vh"></a>
     <br><br>
-    <div class="card-white add-hover" style="position: relative">
-        <img src="../assets/profile-pictures/charley.png"
-             style="border-radius: 100%; border: 2px solid forestgreen; height: 4vh; position: absolute; left: -2vh; top: 50%; transform: translateY(-50%)">
-        <div class="row justify-content-between align-items-center" style="margin-bottom: 0">
-            <div class="col-sm-auto">
-                <span class="attribute-label">Client</span><br>
-                none
+    <div id="transaction-data">
+        <div class="card-white add-hover" style="position: relative">
+            <img src="../assets/profile-pictures/charley.png"
+                 style="border-radius: 100%; border: 2px solid forestgreen; height: 4vh; position: absolute; left: -2vh; top: 50%; transform: translateY(-50%)">
+            <div class="row justify-content-between align-items-center" style="margin-bottom: 0">
+                <div class="col-sm-auto">
+                    <span class="attribute-label">Client</span><br>
+                    none
+                </div>
+                <div class="col-sm-auto">
+                    <span class="attribute-label">Instructor</span><br>
+                    <span style="color: forestgreen">Charley Cai</span>
+                </div>
+                <div class="col-sm-auto">
+                    <span class="attribute-label">Date</span><br>
+                    March 14, 2020
+                </div>
+                <div class="col-sm-auto">
+                    <span class="attribute-label">Description</span><br>
+                    Domain Acquisition
+                </div>
+                <div class="col-sm-auto">
+                    <span class="attribute-label">Hours</span><br>
+                    0
+                </div>
+                <div class="col-sm-auto">
+                    <span class="attribute-label">$/hr</span><br>
+                    $0.00
+                </div>
+                <div class="col-sm-auto">
+                    <span class="attribute-label">Charge</span><br>
+                    $0.00
+                </div>
+                <div class="col-sm-auto">
+                    <span class="attribute-label">Client Payment</span><br>
+                    $0.00
+                </div>
+                <div class="col-sm-auto">
+                    <span class="attribute-label">Payment</span><br>
+                    -$24.13
+                </div>
+                <div class="col-sm-auto slide" style="position: absolute; right: 0;">
+                    <a class="button-blue" href="#">Details</a>
+                </div>
             </div>
-            <div class="col-sm-auto">
-                <span class="attribute-label">Instructor</span><br>
-                <span style="color: forestgreen">Charley Cai</span>
-            </div>
-            <div class="col-sm-auto">
-                <span class="attribute-label">Date</span><br>
-                March 14, 2020
-            </div>
-            <div class="col-sm-auto">
-                <span class="attribute-label">Description</span><br>
-                Domain Acquisition
-            </div>
-            <div class="col-sm-auto">
-                <span class="attribute-label">Charge</span><br>
-                $0.00
-            </div>
-            <div class="col-sm-auto">
-                <span class="attribute-label">Client Payment</span><br>
-                $0.00
-            </div>
-            <div class="col-sm-auto">
-                <span class="attribute-label">Payment</span><br>
-                -$24.13
-            </div>
-            <div class="col-md-5 slide" style="position: absolute; left: 0;">
-                <a class="button-red" href="#">Mark as paid</a>
-                <a class="button-red" href="#">Mark as complete</a>
-                <a class="button-black" href="#">Details</a>
-            </div>
-
         </div>
+        <br>
+    </div>
+    <div class="container text-center" style="padding-top: 10vh; padding-bottom: 10vh">
+        <img src="../assets/logo.svg" style="width: 10vh">
+        <br><br><br>
+        <p>
+            ACUO <br>
+            Latin: [ˈa.kʊ.oː] <br>
+            <li> To make pointed, sharpen, whet.
+        <li> To exercise, practice, improve.
+        </p>
     </div>
 </div>
 
@@ -185,28 +203,104 @@
                     } else if ((currentHour >= 12 && currentHour <= 16)) {
                         document.getElementById("greeting").innerText = "Good afternoon"
                     }
+                    getTransactionData()
 
                 }
             }
         })
     }
 
-    function getTransactionData(sort = "date", filters = [], search="") {
+    async function getTransactionData(sort = "date", filters = [], search = "") {
         filterString = ""
-        for(f in filters){
+        for (f in filters) {
             filterString += filters[f] + (parseInt(f) === filters.length - 1 ? "" : ",")
         }
-        $.ajax({
+        await $.ajax({
             type: "GET",
             url: "/getData?sort=" + sort + "&filter=" + filterString + "&search=" + search,
             success(response) {
-
+                renderTransactionData(JSON.parse(response))
             }
         })
     }
 
+    async function renderTransactionData(transactions) {
+        document.getElementById("transaction-data").innerHTML = "";
+        for (i in transactions) {
+            tran = transactions[i]
+            var wrapper = document.createElement('div');
+            wrapper.innerHTML = "<div class=\"card-white add-hover\" style=\"position: relative\">\n" +
+                "            <img src=\"../assets/profile-pictures/charley.png\"\n" +
+                "                 style=\"border-radius: 100%; border: 2px solid forestgreen; height: 4vh; position: absolute; left: -2vh; top: 50%; transform: translateY(-50%)\">\n" +
+                "            <div class=\"row justify-content-between align-items-center\" style=\"margin-bottom: 0\">\n" +
+                "                <div class=\"col-sm-auto\">\n" +
+                "                    <span class=\"attribute-label\">Client</span><br>\n" +
+                "                    " + tran["client_id"] + "\n" +
+                "                </div>\n" +
+                "                <div class=\"col-sm-auto\">\n" +
+                "                    <span class=\"attribute-label\">Instructor</span><br>\n" +
+                "                    <span style=\"color: forestgreen\">" + tran["instructor_id"] + "</span>\n" +
+                "                </div>\n" +
+                "                <div class=\"col-sm-auto\">\n" +
+                "                    <span class=\"attribute-label\">Date</span><br>\n" +
+                "                    " + tran["date"] + "\n" +
+                "                </div>\n" +
+                "                <div class=\"col-sm-auto\">\n" +
+                "                    <span class=\"attribute-label\">Description</span><br>\n" +
+                "                    " + tran["description"] + "\n" +
+                "                </div>\n" +
+                "                <div class=\"col-sm-auto\">\n" +
+                "                    <span class=\"attribute-label\">Hours</span><br>\n" +
+                "                    " + tran["hours"] + "\n" +
+                "                </div>\n" +
+                "                <div class=\"col-sm-auto\">\n" +
+                "                    <span class=\"attribute-label\">$/hr</span><br>\n" +
+                "                    $" + tran["price_per_hour"] + "\n" +
+                "                </div>\n" +
+                "                <div class=\"col-sm-auto\">\n" +
+                "                    <span class=\"attribute-label\">Charge</span><br>\n" +
+                "                    $" + tran["charge"] + "\n" +
+                "                </div>\n" +
+                "                <div class=\"col-sm-auto\">\n" +
+                "                    <span class=\"attribute-label\">Client Payment</span><br>\n" +
+                "                    $" + tran["client_payment"] + "\n" +
+                "                </div>\n" +
+                "                <div class=\"col-sm-auto\">\n" +
+                "                    <span class=\"attribute-label\">Payment</span><br>\n" +
+                "                    $" + tran["payment"] + "\n" +
+                "                </div>\n" +
+                "                <div class=\"col-sm-auto slide\" style=\"position: absolute; right: 0; opacity: 0\">\n" +
+                "                    <a class=\"button-blue\" href=\"#\">Details</a>\n" +
+                "                </div>\n" +
+                "            </div>\n" +
+                "        </div>\n" +
+                "        <br>"
+
+            document.getElementById("transaction-data").appendChild(wrapper.firstChild);
+            setHover()
+        }
+
+        function setHover() {
+            $(".add-hover").hover(function () {
+
+                animeTarget = getRemoveTarget(this);
+                anime({
+                    targets: animeTarget,
+                    opacity: 1,
+                    translateX: '100px',
+                });
+            }, function () {
+                animeTarget = getRemoveTarget(this);
+                anime({
+                    targets: animeTarget,
+                    opacity: 0,
+                    translateX: 0,
+                });
+            });
+        }
+    }
+
     function filter(parameter) {
-        console.log($('.filter'))
         $('.filter').removeClass("selected-filter")
         $('#' + parameter).addClass("selected-filter")
     }
