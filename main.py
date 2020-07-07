@@ -152,29 +152,41 @@ def token_sign_in():
     }
     return jsonify(response)
 
+@app.route('/details')
+def details_page():
+    if session["is-admin"]:
+        id = request.args.get("id")
+        return render_template("details.html")
+    else:
+        return Response(status=401)
 
 @app.route('/getData')
 def getData():
-    response = []
-    docs = db.collection('transactions').stream()
-    for doc in docs:
-        dictionary = doc.to_dict()
-        utc_time = time.strptime(dictionary['date'], "%m/%d/%Y")
-        dictionary["epoch"] = timegm(utc_time)
-        response.append(dictionary)
+    if session["is-admin"]:
+        response = []
+        docs = db.collection('transactions').stream()
+        for doc in docs:
+            dictionary = doc.to_dict()
+            utc_time = time.strptime(dictionary['date'], "%m/%d/%Y")
+            dictionary["epoch"] = timegm(utc_time)
+            dictionary['instructor_profile'] = db.collection(u'admins').document(dictionary["instructor_id"]).get().to_dict()
+            dictionary['id'] = doc.id
+            response.append(dictionary)
 
-    def cmp_items(a, b):
-        if a['epoch'] > b['epoch']:
-            return 1
-        elif a['epoch'] == b['epoch']:
-            return 0
-        else:
-            return -1
+        def cmp_items(a, b):
+            if a['epoch'] > b['epoch']:
+                return 1
+            elif a['epoch'] == b['epoch']:
+                return 0
+            else:
+                return -1
 
-    cmp_items_py3 = cmp_to_key(cmp_items)
+        cmp_items_py3 = cmp_to_key(cmp_items)
 
-    response.sort(key=cmp_items_py3)
-    return json.dumps(response)
+        response.sort(key=cmp_items_py3)
+        return json.dumps(response)
+    else:
+        return Response(status=401)
 
 
 @app.route('/signout')

@@ -191,7 +191,7 @@
                     document.getElementById("gsign-in-button").classList.add("hidden")
                     document.getElementById("login").classList.add("hidden")
                     document.getElementById("app").classList.remove("hidden")
-                    document.getElementById("g-profile-pic").src = profile["SK"]
+                    document.getElementById("g-profile-pic").src = "SK" in profile ? profile["SK"] : profile["MK"]
                     document.getElementById("g-name").innerText = profile["Bd"]
                     timezone = jstz.determine()
                     date = new Date()
@@ -219,6 +219,7 @@
             type: "GET",
             url: "/getData?sort=" + sort + "&filter=" + filterString + "&search=" + search,
             success(response) {
+                console.log(response)
                 renderTransactionData(JSON.parse(response))
             }
         })
@@ -229,9 +230,11 @@
         for (i in transactions) {
             tran = transactions[i]
             var wrapper = document.createElement('div');
+            var linebreak_wrapper = document.createElement('div');
+            linebreak_wrapper.innerHTML = "<br>"
             wrapper.innerHTML = "<div class=\"card-white add-hover\" style=\"position: relative\">\n" +
-                "            <img src=\"../assets/profile-pictures/charley.png\"\n" +
-                "                 style=\"border-radius: 100%; border: 2px solid forestgreen; height: 4vh; position: absolute; left: -2vh; top: 50%; transform: translateY(-50%)\">\n" +
+                "            <img src=\""+tran["instructor_profile"]["profile_picture"]+"\"\n" +
+                "                 style=\"border-radius: 100%; border: 2px solid "+tran["instructor_profile"]["colour"]+"; height: 4vh; position: absolute; left: -2vh; top: 50%; transform: translateY(-50%)\">\n" +
                 "            <div class=\"row justify-content-between align-items-center\" style=\"margin-bottom: 0\">\n" +
                 "                <div class=\"col-sm-auto\">\n" +
                 "                    <span class=\"attribute-label\">Client</span><br>\n" +
@@ -239,7 +242,7 @@
                 "                </div>\n" +
                 "                <div class=\"col-sm-auto\">\n" +
                 "                    <span class=\"attribute-label\">Instructor</span><br>\n" +
-                "                    <span style=\"color: forestgreen\">" + tran["instructor_id"] + "</span>\n" +
+                "                    <span style=\"color: "+tran["instructor_profile"]["colour"]+"\">" + tran["instructor_id"] + "</span>\n" +
                 "                </div>\n" +
                 "                <div class=\"col-sm-auto\">\n" +
                 "                    <span class=\"attribute-label\">Date</span><br>\n" +
@@ -270,13 +273,13 @@
                 "                    $" + tran["payment"] + "\n" +
                 "                </div>\n" +
                 "                <div class=\"col-sm-auto slide\" style=\"position: absolute; right: 0; opacity: 0\">\n" +
-                "                    <a class=\"button-blue\" href=\"#\">Details</a>\n" +
+                "                    <a class=\"button-blue\" href=\"/details?id="+tran['id']+"\">Details</a>\n" +
                 "                </div>\n" +
                 "            </div>\n" +
-                "        </div>\n" +
-                "        <br>"
+                "        </div>\n"
 
             document.getElementById("transaction-data").appendChild(wrapper.firstChild);
+            document.getElementById("transaction-data").appendChild(linebreak_wrapper.firstChild);
             setHover()
         }
 

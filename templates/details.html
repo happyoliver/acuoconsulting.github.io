@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Acuo</title>
+    <link rel="icon" href="../assets/icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="google-signin-client_id"
+          content="763327857769-oq010g48mmfgna5qn905qlgfl1c71la2.apps.googleusercontent.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/materialize.css">
+    <style>
+        .abcRioButtonContents span {
+            color: #757575 !important;
+        }
+
+        * {
+            color: black;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body style="background-color: #1a1a1a">
+<div class="container text-center p-5">
+    <a href="/"><img src="../assets/logo.svg" style="width: 5vw"></a>
+    <br><br><br>
+    <a href="/hourlogger"><img src="../assets/icons/arrow-left.svg" style="height: 1vw" id="left-arrow"></a>
+</div>
+<form>
+    <div class="container">
+        <div class="card-white">
+            <div class="row">
+                <div class="col">
+                    <h4 class="acuo-green">
+                        Transaction #{{transaction_id}}
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <span class="attribute-label">Client</span><br>
+                        <input type="text" value="{{client}}" style="width: 50%">
+                    </p>
+                    <p>
+                        <span class="attribute-label">Instructor</span><br>
+                        <select style="width: 50%">
+                            {% for instructor in admins %}
+                            {% if selected == instructor %}
+                            <option value="{{instructor}}" selected>{{instructor}}</option>
+                            {% else %}
+                            <option value="{{instructor}}">{{instructor}}</option>
+                            {% endif %}}
+                            {% endfor %}
+                        </select>
+                    </p>
+                    <a class="button-green" href="/" style="position: absolute; bottom: 0">Save</a>
+                </div>
+                <div class="col">
+                    <p>
+                        <span class="attribute-label">Date</span><br>
+                        <input type="text" class="datepicker" autoClose=True value="{{date}}" style="width: 50%">
+                    </p>
+                    <p>
+                        <span class="attribute-label">Description</span><br>
+                        <input type="text" value="{{description}}" style="width: 50%">
+                    </p>
+                </div>
+                <div class="col">
+                    <p>
+                        <span class="attribute-label">Hours</span><br>
+                        <input type="text" value="{{hours}}" style="width: 50%">
+                    </p>
+                    <p>
+                        <span class="attribute-label">$/hr</span><br>
+                        <input type="text" value="{{price_per_hour}}" style="width: 50%">
+                    </p>
+                    <p>
+                        <span class="attribute-label">Charge</span><br>
+                        <input type="text" value="{{charge}}" style="width: 50%">
+                    </p>
+                    <p>
+                        <span class="attribute-label">Client Payment</span><br>
+                        <input type="text" value="{{client_payment}}" style="width: 50%">
+                    </p>
+                    <p>
+                        <span class="attribute-label">Payment</span><br>
+                        <input type="text" value="{{payment}}" style="width: 50%">
+                    </p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h4 style="color: white">
+            Comments
+        </h4>
+        <br>
+
+        <div class="card-white">
+            <div class="row align-middle" style="margin-bottom: 0">
+                <div class="col-sm-auto">
+                    <img src="{{me.profile_picture}}"
+                         style="border-radius: 100%; border: 2px solid {{me.colour}}; height: 4vh;">
+                </div>
+                <div class="col">
+                    <input type="text" placeholder="Type your comment here...">
+                </div>
+                <div class="col-sm-auto">
+                    <a class="button-green">Submit</a>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        {% for comment in comments %}
+        <div class="card-white">
+            <div class="row align-middle" style="margin-bottom: 0">
+                <div class="col-sm-auto">
+                    <img src="{{comment.profile_picture}}"
+                         style="border-radius: 100%; border: 2px solid {{comment.colour}}; height: 4vh;">
+                </div>
+                <div class="col">
+                    <p style="position: absolute; top: 50%; transform: translateY(-50%)">
+                        <span style="color: {{comment.colour}}">{{comment.instructor-id}} - {{comment.date}}</span><br>
+                        {{comment.content}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+</form>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"
+        integrity="sha256-hBMojZuWKocCflyaG8T19KBq9OlTlK39CTxb8AUWKhY=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script src="../js/materialize.min.js"></script>
+<script src="../js/main.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.datepicker');
+        var instances = M.Datepicker.init(elems, {
+            "autoClose": true,
+            "format": "mm/dd/yyyy",
+            defaultDate: new Date().setF
+        });
+    });
+
+    $(document).ready(function () {
+        $('select').formSelect();
+    });
+</script>
+
+</html>
