@@ -12,6 +12,9 @@ html {
     scroll-behavior: smooth;
 }
 
+body{
+
+}
 
 * {
     font-family: acre !important;
@@ -459,4 +462,8 @@ label.selected-filter {
     color: grey;
     /*position: absolute;*/
     /*top: 0;*/
+}
+
+.timeline-bullet{
+    white-space: pre;
 }
