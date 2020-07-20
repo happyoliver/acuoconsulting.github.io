@@ -464,11 +464,21 @@ label.selected-filter {
     /*top: 0;*/
 }
 
-.timeline-bullet{
-    white-space: pre;
-}
-.list-details {
+.timeline-bullet {
+    /* white-space: pre; */
+    word-wrap: break-word;
+    white-space: normal;
     display: flex;
+    align-items: flex-start;
+    padding-bottom: 15px;
+}
+.timeline-bullet img {
+    height: 32px;
+    width: 56px;
+}
+
+.bottom li {
+    text-align: left;
 }
 
 .list-details {
@@ -476,14 +486,16 @@ label.selected-filter {
     align-items: flex-start;
 }
 
-.list-details img {
+.highlights .list-details img {
+    padding-top: 5px;
     width: 24px;
     height: 24px;
 }
-.list-details span {
-    padding: 2px 5px 0 8px;
+.highlights .list-details span {
+    padding: 2px 8px 0 5px;
 }
 
-/* .list-details p {
-    padding-top: 10px;
-} */
+.highlights .list-details p {
+    padding: 0;
+    margin: 0;
+}
