@@ -467,3 +467,23 @@ label.selected-filter {
 .timeline-bullet{
     white-space: pre;
 }
+.list-details {
+    display: flex;
+}
+
+.list-details {
+    display: flex;
+    align-items: flex-start;
+}
+
+.list-details img {
+    width: 24px;
+    height: 24px;
+}
+.list-details span {
+    padding: 2px 5px 0 8px;
+}
+
+/* .list-details p {
+    padding-top: 10px;
+} */
